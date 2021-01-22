@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "T_ACHETEUR");
+@Table(name = "T_ACHETEUR")
 public class Acheteur{
 
 	@Column(name = "Chiffre_Affaire_Acheteur")
