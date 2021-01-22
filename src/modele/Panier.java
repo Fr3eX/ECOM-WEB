@@ -29,6 +29,9 @@ public class Panier {
 	
 	@Column(name = "Date_Creation_Panier")
 	private Date datePanier;
+	
+	@Column(name = "Proprietaire")
+	private Acheteur acheteur;
     
 	@OneToMany(mappedBy = "panier")
 	private Collection<Produit> produits;
@@ -76,6 +79,14 @@ public class Panier {
 	public void setProduits(Collection<Produit> produits) {
 		this.produits = produits;
 	}
+	public Acheteur getAcheteur() {
+		return acheteur;
+	}
+
+	public void setAcheteur(Acheteur acheteur) {
+		this.acheteur = acheteur;
+	}
+
 	public void addProduit(Produit p)
 	{
 		this.produits.add(p);

@@ -16,7 +16,10 @@ public class Acheteur{
 	
 	@Column(name = "Type_Acheteur")
 	private int typeAcheteur;
-
+    
+	@Column(name = "Panier")
+	private Panier panier;
+	
 	public Acheteur() {
 		super();
 	}
@@ -40,9 +43,20 @@ public class Acheteur{
 	public int getTypeAcheteur() {
 		return typeAcheteur;
 	}
-
 	public void setTypeAcheteur(int typeAcheteur) {
 		this.typeAcheteur = typeAcheteur;
 	}
-	
+
+	public Panier getPanier() {
+		return panier;
+	}
+
+	public void setPanier(Panier panier) {
+		this.panier = panier;
+	}
+	public void addPanier(Panier p)
+	{
+		this.setPanier(p);
+		p.setAcheteur(this);
+	}
 }
