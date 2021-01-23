@@ -1,0 +1,25 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+<!--  
+    	if we have just one database then we need just one persistence unit but if out app uses many
+    	databases then we need the to declare a another persistence unit and so go on.
+    	
+    	provider means which framework implementation we want use hibernate or Toplink ..
+     -->
+		<persistence-unit name="FIRST_UNIT">
+			
+			<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+			
+			<properties>
+			
+				<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ECOM_WEB"/>
+				<property name="hibernate.connection.username" value="root"/>
+				<property name="hibernate.connection.password" value="A!a123456789"/>
+				<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+				<property name="hibernate.hbm2ddl.auto" value="create"/>
+				<property name="hibernate.show_sql" value="true"/>
+				<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+			
+			</properties>
+		
+		</persistence-unit>
+</persistence>

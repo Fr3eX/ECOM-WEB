@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 import modele.Commande;
 
-@Entity
+//@Entity
 @Table(name = "T_FACTURE")
 public class Facture {
 
