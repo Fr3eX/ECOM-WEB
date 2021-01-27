@@ -10,9 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-//@Entity
+@Entity
 @Table(name = "T_PANIER")
 public class Panier {
 	
@@ -30,7 +30,7 @@ public class Panier {
 	@Column(name = "Date_Creation_Panier")
 	private Date datePanier;
 	
-	@Column(name = "Proprietaire")
+	@OneToOne(targetEntity=Panier.class) 
 	private Acheteur acheteur;
     
 	@OneToMany(mappedBy = "panier")

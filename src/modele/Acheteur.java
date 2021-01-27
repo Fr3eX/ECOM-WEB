@@ -1,7 +1,9 @@
 package modele;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 //@Entity
@@ -17,7 +19,7 @@ public class Acheteur{
 	@Column(name = "Type_Acheteur")
 	private int typeAcheteur;
     
-	@Column(name = "Panier")
+	@OneToOne(targetEntity=Acheteur.class,cascade=CascadeType.ALL)  
 	private Panier panier;
 	
 	public Acheteur() {

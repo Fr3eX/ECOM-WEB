@@ -17,8 +17,8 @@ import javax.persistence.Table;
 
 import modele.Commande;
 
-//@Entity
-@Table(name = "T_FACTURE")
+@Entity
+//@Table(name = "T_FACTURE")
 public class Facture {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,8 @@ public class Facture {
 	
 	private boolean etatFacture;
 	
-	 @OneToMany(targetEntity=Commande.class, mappedBy="Facture", cascade=CascadeType.ALL)
+	// @OneToMany(targetEntity=Commande.class, mappedBy="Facture", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy = "factures")
 	private List<Commande> commandes = new ArrayList<>();
 	
 	
