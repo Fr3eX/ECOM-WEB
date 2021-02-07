@@ -1,27 +1,23 @@
 package modele;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-@Entity @Table(name = "T_VENDEUR")
-public class Vendeur {
+@Entity 
+@Table(name = "T_VENDEUR")
+@PrimaryKeyJoinColumn(name = "ID_VENDEUR")
+public class Vendeur extends User {
 
-	@Id @GeneratedValue( strategy=GenerationType.IDENTITY )
-	private Long idVendeur;
-	
-	private double chiffreAffaireVente;
-	private int nombreVente;
+	private Double chiffreAffaireVente;
+	private Integer nombreVente;
 	private String description;
-	private int appreciation;
-	private int typeVendeur;
+	private Integer appreciation;
+	private Integer typeVendeur;
 	
-	public Vendeur(Long idVendeur, double chiffreAffaireVente, int nombreVente, String description, int appreciation,
-			int typeVendeur) {
+	public Vendeur(Double chiffreAffaireVente, Integer nombreVente, String description, Integer appreciation,
+			Integer typeVendeur) {
 		super();
-		this.idVendeur = idVendeur;
 		this.chiffreAffaireVente = chiffreAffaireVente;
 		this.nombreVente = nombreVente;
 		this.description = description;
@@ -33,15 +29,7 @@ public class Vendeur {
 		super();
 	}
 
-	public Long getIdVendeur() {
-		return idVendeur;
-	}
-
-	public void setIdVendeur(Long idVendeur) {
-		this.idVendeur = idVendeur;
-	}
-
-	public double getChiffreAffaireVente() {
+	public Double getChiffreAffaireVente() {
 		return chiffreAffaireVente;
 	}
 
@@ -49,7 +37,7 @@ public class Vendeur {
 		this.chiffreAffaireVente = chiffreAffaireVente;
 	}
 
-	public int getNombreVente() {
+	public Integer getNombreVente() {
 		return nombreVente;
 	}
 
@@ -65,7 +53,7 @@ public class Vendeur {
 		this.description = description;
 	}
 
-	public int getAppreciation() {
+	public Integer getAppreciation() {
 		return appreciation;
 	}
 
@@ -73,7 +61,7 @@ public class Vendeur {
 		this.appreciation = appreciation;
 	}
 
-	public int getTypeVendeur() {
+	public Integer getTypeVendeur() {
 		return typeVendeur;
 	}
 

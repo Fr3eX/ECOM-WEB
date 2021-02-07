@@ -25,7 +25,7 @@ public class FactoryInitializer implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		
 	
-		factory=Persistence.createEntityManagerFactory(UNIT_NAME);
+		this.factory=Persistence.createEntityManagerFactory(UNIT_NAME);
 		
 		ServletContext context=sce.getServletContext();
 		

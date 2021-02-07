@@ -1,42 +1,38 @@
 package modele;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.apache.commons.validator.routines.EmailValidator;
 
+import dao.exceptions.DAOException;
+import dao.implementations.DAOUserImp;
+import dao.interfaces.DAOUser;
 
 public class Test {
 
 	public static void main(String[] args) {
-	    EntityManagerFactory emf = Persistence.createEntityManagerFactory("FIRST_UNIT");    
-	    EntityManager em = emf.createEntityManager();    
-	    EntityTransaction transac = em.getTransaction();
-	    transac.begin();
-	    Admin admin = new Admin();
-	    admin.setNom("aziz");
-	    em.persist(admin);
-	    transac.commit();
-	    
-	    em.close();    
-	    emf.close(); 
+		// TODO Auto-generated method stub
 		
-		/*
-		EntityManagerFactory mf = Persistence.createEntityManagerFactory("persistence.xml");
-        SessionFactory sessionFactory;
-		sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session=sessionFactory.openSession();
-		session.beginTransaction();
-        Admin admin = new Admin();
-		session.save(admin);
-		session.getTransaction().commit();
-		session.close();*/
-
-
+		EntityManagerFactory fac=Persistence.createEntityManagerFactory("FIRST_UNIT");
+		
+		User user=new Vendeur();
+		user.setAdresse("CASA MAROC");
+		user.setEmail("bounifomar44@gmail.com");
+		user.setNom("Omar");
+		user.setPassword("12345");
+		((Vendeur)user).setChiffreAffaireVente(525.0);
+		
+		DAOUser dao_user=new DAOUserImp(fac);
+		
+		try
+		{
+			dao_user.addUser(user);
+		}
+		catch (DAOException e) {
+			System.out.println( e.getMessage());
+		}
+		
 		
 	}
 
