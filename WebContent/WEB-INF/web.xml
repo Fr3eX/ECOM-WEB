@@ -5,12 +5,35 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
   version="3.0">
 
-<listener>
-	<listener-class>config.FactoryInitializer</listener-class>
-</listener>
+<jsp-config>
+	<jsp-property-group>
+		<url-pattern>*.jsp</url-pattern>
+		<include-prelude>/WEB-INF/tagLibs.jsp</include-prelude>
+	</jsp-property-group>
+</jsp-config>
 
 <session-config>
 	<session-timeout> 30 </session-timeout>
 </session-config>
+
+
+<!-- <listener>
+	<listener-class>config.FactoryInitializer</listener-class>
+</listener>
+-->
+
+<servlet>
+	<servlet-name>DownloadServlet</servlet-name>
+	<servlet-class>controllers.DownloadServlet</servlet-class>
+	<init-param>
+		<param-name>path</param-name>
+		<param-value>/home/mrc/images-jee/</param-value>
+	</init-param>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>DownloadServlet</servlet-name>
+	<url-pattern>/attachment/*</url-pattern>
+</servlet-mapping>
 
 </web-app>

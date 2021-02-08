@@ -17,9 +17,9 @@ public Admin() {
 	// TODO Auto-generated constructor stub
 }
 
-public Admin(long idUser, String nom, String prenom, String adresse, String userName, String password, String email,
+public Admin(String nom, String prenom, String adresse, String userName, String password, String email,
 		String telephone, Date dateNaissance, String pays, String ville, String typeUser, Date dateCreation) {
-	super(idUser, nom, prenom, adresse, userName, password, email, telephone, dateNaissance, pays, ville, typeUser,
+	super(nom, prenom, adresse, userName, password, email, telephone, dateNaissance, pays, ville, typeUser,
 			dateCreation);
 	// TODO Auto-generated constructor stub
 }
@@ -28,7 +28,7 @@ public Admin(long idUser, String nom, String prenom, String adresse, String user
 public Admin(long idUser, String nom, String prenom, String adresse, String userName, String password, String email,
 		String telephone, Date dateNaissance, String pays, String ville, String typeUser, Date dateCreation, String role,
 		Date dateDerniereAction) {
-	super(idUser, nom, prenom, adresse, userName, password, email, telephone, dateNaissance, pays, ville, typeUser,dateCreation);
+	super(nom, prenom, adresse, userName, password, email, telephone, dateNaissance, pays, ville, typeUser,dateCreation);
 	this.dateDerniereAction = dateDerniereAction;
 }
 

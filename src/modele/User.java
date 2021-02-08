@@ -30,10 +30,9 @@ public User() {
 	// TODO Auto-generated constructor stub
 }
 
-public User(long idUser, String nom, String prenom, String adresse, String userName, String password, String email,
+public User(String nom, String prenom, String adresse, String userName, String password, String email,
 		String telephone, Date dateNaissance, String pays, String ville, String typeUser, Date dateCreation) {
 	super();
-	this.idUser = idUser;
 	this.nom = nom;
 	this.prenom = prenom;
 	this.adresse = adresse;
