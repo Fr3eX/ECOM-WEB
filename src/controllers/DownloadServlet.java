@@ -11,16 +11,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 /*
- *  
- * 
- * 
- * 
- * This servlet is for allowing download module.
- * 
- * 
- * 
- * 
+ * This servlet is  download requests.
  */
 
 public class DownloadServlet extends HttpServlet {
@@ -34,8 +28,10 @@ public class DownloadServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path=this.getServletConfig().getInitParameter(PATH);
-		
+		BufferedInputStream in=null;
+		BufferedOutputStream out=null;
+
+		String pathDes=this.getServletConfig().getInitParameter(PATH);
 		String filePath=request.getPathInfo();
 		
 		if(filePath==null || filePath.equals("/"))
@@ -45,7 +41,7 @@ public class DownloadServlet extends HttpServlet {
 		}
 
 		filePath=URLDecoder.decode(filePath,"UTF-8");
-		File file=new File(path,filePath);
+		File file=new File(pathDes,filePath);
 		
 		if(!file.exists())
 		{
@@ -63,10 +59,7 @@ public class DownloadServlet extends HttpServlet {
 		response.setContentType(type);
 		response.setHeader("Content-Lenght", String.valueOf(file.length()));
 		response.setHeader("Content-Disposition", "inline; filename=\""+file.getName()+"\"");
-		
-		BufferedInputStream in=null;
-		BufferedOutputStream out=null;
-		
+
 		try {
 			in=new BufferedInputStream(new FileInputStream(file),BUFFER_LENGHT);
 			out=new BufferedOutputStream(response.getOutputStream(),BUFFER_LENGHT);

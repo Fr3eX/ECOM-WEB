@@ -27,7 +27,8 @@ public class Test {
 		
 		try
 		{
-			dao_user.addUser(user);
+			user=dao_user.loadUser("omar@gmai.com");
+			System.out.println(user.getPassword());
 		}
 		catch (DAOException e) {
 			System.out.println( e.getMessage());

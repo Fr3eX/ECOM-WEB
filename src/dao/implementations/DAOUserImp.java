@@ -1,5 +1,6 @@
 package dao.implementations;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ import modele.User;
 
 public class DAOUserImp implements DAOUser{
 	
-	private final static String SQL_EMAIL_QUERY="SELECT 1 FROM TUser WHERE email like ?";
+	private final static String SQL_EMAIL_QUERY="SELECT idUser FROM TUser WHERE email like ?";
 	private EntityManager manager;
 	
 	public  DAOUserImp(EntityManagerFactory factory) {
@@ -73,12 +74,38 @@ public class DAOUserImp implements DAOUser{
 		}
 		catch (Exception e) {
 			tr.rollback();
-			throw new DAOException("Cannot del User",e);
+			throw new DAOException("Cannot Load User " + e);
 		}
 		
 		return user;
 	}
 
+	@Override
+	public User loadUser(String email) throws DAOException {
+		// TODO Auto-generated method stub
+		User user=null;
+		BigInteger id;
+		Query query;
+		EntityTransaction tr=this.manager.getTransaction();
+		tr.begin();
+		try {
+			query=this.manager.createNativeQuery(SQL_EMAIL_QUERY);
+			query.setParameter(1, email);
+			
+			id=(BigInteger)query.getSingleResult();
+			
+			user=this.manager.find(User.class, id.longValue());
+			
+			tr.commit();
+		} catch (Exception e) {
+			tr.rollback();
+			throw new DAOException("Cannot Load User " + e);
+		}
+		
+		
+		return user;
+	}
+	
 	@Override
 	public void updateUser(User user) throws DAOException {
 		
@@ -123,5 +150,6 @@ public class DAOUserImp implements DAOUser{
 		}
 	
 	}
+
 
 }
