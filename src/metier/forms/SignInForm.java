@@ -20,7 +20,7 @@ public class SignInForm {
 		 private static final Integer MIN_EMAIL_LENGTH=6;
 		 
 		 
-		 private static final String FIELD_EMAIL="mai";
+		 private static final String FIELD_EMAIL="mail";
 		 private static final String FIELD_PASSWORD="pass";
 		 
 		 

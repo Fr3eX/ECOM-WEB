@@ -47,12 +47,6 @@ public class Produit {
 	@Column(name = "NombreAchat")
 	private int nombreAchat;
 	
-	@Column(name = "color")
-	private String color;
-	
-	@Column(name = "newProduct")
-	private Boolean newProduct;
-	
 	@ManyToOne
 	@JoinColumn(name = "Id_Panier")
 	private Panier panier;
@@ -60,36 +54,10 @@ public class Produit {
 	@ManyToOne
 	@JoinColumn(name = "Categori_Id")
     private Categorie categorie;
-	
-	@ManyToOne
-	@JoinColumn(name = "vendeur_Id")
-	private Vendeur vendeur;
+
 	public Produit() {
 		super();
 	}
-    
-	
-	public Produit(Long idProduit, String designation, int quantite, Double prix, String description, Double promotion,
-			Date dateInsertion, int appreciationPos, int appreciationNeg, int nombreAchat, String color,
-			Boolean newProduct, Panier panier, Categorie categorie, Vendeur vendeur) {
-		super();
-		this.idProduit = idProduit;
-		this.designation = designation;
-		this.quantite = quantite;
-		this.prix = prix;
-		this.description = description;
-		this.promotion = promotion;
-		this.dateInsertion = dateInsertion;
-		this.appreciationPos = appreciationPos;
-		this.appreciationNeg = appreciationNeg;
-		this.nombreAchat = nombreAchat;
-		this.color = color;
-		this.newProduct = newProduct;
-		this.panier = panier;
-		this.categorie = categorie;
-		this.vendeur = vendeur;
-	}
-
 
 	public Long getIdProduit() {
 		return idProduit;
@@ -169,31 +137,6 @@ public class Produit {
 
 	public void setNombreAchat(int nombreAchat) {
 		this.nombreAchat = nombreAchat;
-	}
-
-	
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public Boolean getNewProduct() {
-		return newProduct;
-	}
-
-	public void setNewProduct(Boolean newProduct) {
-		this.newProduct = newProduct;
-	}
-
-	public Vendeur getVendeur() {
-		return vendeur;
-	}
-
-	public void setVendeur(Vendeur vendeur) {
-		this.vendeur = vendeur;
 	}
 
 	public Panier getPanier() {

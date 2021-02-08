@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /*
- * This servlet is  download requests.
+ * This servlet is for download requests.
  */
 
 public class DownloadServlet extends HttpServlet {
