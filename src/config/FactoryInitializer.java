@@ -15,7 +15,6 @@ public class FactoryInitializer implements ServletContextListener {
 	 * 	Listener for init the factory and store the object on Application scope
 	 * 
 	 */
-	
 	private static final String UNIT_NAME="FIRST_UNIT";
 	private static final String ATT_FACTORY="FACTORY";
 	
@@ -24,15 +23,12 @@ public class FactoryInitializer implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		
-	
 		factory=Persistence.createEntityManagerFactory(UNIT_NAME);
 		
 		ServletContext context=sce.getServletContext();
 		
 		context.setAttribute(ATT_FACTORY, this.factory);
 		
-		
-	
 	}
 	
 }
