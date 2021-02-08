@@ -6,9 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-//@Entity
+@Entity
 @Table(name = "T_ACHETEUR")
-public class Acheteur{
+public class Acheteur extends User{
 
 	@Column(name = "Chiffre_Affaire_Acheteur")
 	private Double chiffreAffaireAchat ;
