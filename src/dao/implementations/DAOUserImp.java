@@ -92,11 +92,16 @@ public class DAOUserImp implements DAOUser{
 			query=this.manager.createNativeQuery(SQL_EMAIL_QUERY);
 			query.setParameter(1, email);
 			
-			id=(BigInteger)query.getSingleResult();
-			
-			user=this.manager.find(User.class, id.longValue());
-			
-			tr.commit();
+			try
+			{
+				id=(BigInteger)query.getSingleResult();
+				user=this.manager.find(User.class, id.longValue());
+				tr.commit();
+			}
+			catch (Exception  e) {
+				user=null;
+			}
+
 		} catch (Exception e) {
 			tr.rollback();
 			throw new DAOException("Cannot Load User " + e);
@@ -138,10 +143,15 @@ public class DAOUserImp implements DAOUser{
 			List<User> tmp=(List<User>)query.getResultList();
 			
 			if( !tmp.isEmpty())
-				
-					return true;
+			{	
+				tr.commit();	
+				return true;
+			}
 			else
-					return false;
+			{
+				tr.commit();
+				return false;
+			}
 
 		}
 		catch (Exception e) {

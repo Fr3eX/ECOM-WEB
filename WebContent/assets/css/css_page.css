@@ -2,7 +2,7 @@
  {
  	background-color: black;
  	font-family: 'Open Sans', sans-serif;
- 	background-image: url(".assets/images/img1.jpg");
+ 	background-image: url("../assets/images/img1.jpg");
  	background-repeat: no-repeat;
 
  }

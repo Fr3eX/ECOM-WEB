@@ -17,10 +17,10 @@
 </session-config>
 
 
-<!-- <listener>
-	<listener-class>config.FactoryInitializer</listener-class>
+<listener>
+	<listener-class>config.ServletListener</listener-class>
 </listener>
--->
+
 
 <servlet>
 	<servlet-name>DownloadServlet</servlet-name>

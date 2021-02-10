@@ -49,7 +49,7 @@ public class SignInForm {
 				 
 				 if(this.errors.isEmpty())
 				 {
-					  	user=this.dao_user.loadUser(email);
+					  	User tmp=this.dao_user.loadUser(email);
 					 
 					    ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
 						
@@ -58,10 +58,10 @@ public class SignInForm {
 						passwordEncryptor.setPlainDigest( false );
 						
 						String cryptedPassword=passwordEncryptor.encryptPassword(password);
-						
-						if(!user.getPassword().equals(cryptedPassword))
+					
+						if(tmp==null || !tmp.getPassword().equals(cryptedPassword))
 						{
-							this.results="Email ou mot de passe incorrecte";
+							this.setErrors(FIELD_EMAIL, "Email ou mot de passe incorrecte");
 						}
 				 }
 				 else
@@ -89,7 +89,7 @@ public class SignInForm {
 				this.setErrors(FIELD_EMAIL, e.getMessage());
 			}
 			
-			user.setUserName(email);
+			user.setEmail(email);
 		}
 		 
 		private void processPassword(String password,User user)

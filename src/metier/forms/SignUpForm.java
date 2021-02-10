@@ -18,12 +18,16 @@ public class SignUpForm  {
 
 	private DAOUser dao_user;
 	
-	private static final Integer MIN_NAME_LENGTH=5;
+	private static final Integer MIN_FNAME_LENGTH=4;
+	private static final Integer MIN_LNAME_LENGTH=4;
 	private static final Integer MIN_PASSWORD_LENGTH=6;
 	
-	private static final String FIELD_NAME="nom";
-	private static final String FIELD_PASSWORD="pass";
+	private static final String FIELD_FNAME="firstName";
+	private static final String FIELD_LNAME="lastName";
 	private static final String FIELD_EMAIL="mail";
+	private static final String FIELD_PASSWORD="pass";
+	private static final String FIELD_CONFPASSWORD="confPass";
+	
 	
 	private Map<String,String>errors=new HashMap<String,String>();
 	private String results;
@@ -35,39 +39,57 @@ public class SignUpForm  {
 
 	public User signUp(HttpServletRequest request)
 	{
-		String name = this.getFieldValue(request, FIELD_NAME);
+		String fname = this.getFieldValue(request, FIELD_FNAME);
+		String lname=this.getFieldValue(request, FIELD_LNAME);
 		String email=this.getFieldValue(request, FIELD_EMAIL);
 		String password=this.getFieldValue(request, FIELD_PASSWORD);
+		String cpassword=this.getFieldValue(request, FIELD_CONFPASSWORD);
 		
 		User user=new User();
 		
 		try {
-			this.processName(name, user);
+			this.processFName(fname, user);
+			this.processLName(lname, user);
 			this.processEmail(email, user);
-			this.proccessPassword(password, user);
+			this.proccessPassword(password,cpassword, user);
 			
 			if(this.errors.isEmpty())
 				this.dao_user.addUser(user);
+			
 			else
 				this.results="Échec de l'inscription";
 		} catch (DAOException e) {
 			this.results="Erreur imprévu merci de réessayer plus tard .";
 		}
 		
+		user.setPassword(password);
 		return user;
 	}
-	
-	
-	private void processName(String name,User user)
+	private void processLName(String lname,User user)
 	{
 		try
 		{
-			this.checkName(name);
+			System.out.println("LName : " +lname);
+
+			this.checkLName(lname);
 		}
 		catch (FormVException e) {
-			this.setErrors(FIELD_NAME, e.getMessage());
+			this.setErrors(FIELD_LNAME, e.getMessage());
 		}
-		user.setNom(name);
+		user.setNom(lname);
+	}
+	
+	private void processFName(String fname,User user)
+	{
+		try
+		{
+			System.out.println("FName : " +fname);
+			this.checkFName(fname);
+		}
+		catch (FormVException e) {
+			this.setErrors(FIELD_FNAME, e.getMessage());
+		}
+		user.setPrenom(fname);
 	}
 	
 	private void processEmail(String email,User user)
@@ -82,11 +104,12 @@ public class SignUpForm  {
 		user.setEmail(email);
 	}
 	
-	private void proccessPassword(String password,User user)
+	private void proccessPassword(String password,String confPassword,User user)
 	{
 		try
 		{
 			this.checkPassword(password);
+			this.checkCPassword(confPassword, password);
 		}
 		catch (FormVException e) {
 			this.setErrors(FIELD_PASSWORD, e.getMessage());
@@ -130,25 +153,46 @@ public class SignUpForm  {
 		if( password != null )
 		{
 			if( password.length() < MIN_PASSWORD_LENGTH )
-				throw new FormVException("Le mot de passe  doit contenir au moins six caractères .");
+				throw new FormVException("Le mot de passe  doit contenir au moins "+MIN_PASSWORD_LENGTH+" caractères .");
 		}
 		else
 			throw new FormVException("Veuillez saisire un mot de passe.");
 	}
 	
-	
-	private void checkName(String name)throws FormVException
+	private void checkCPassword(String confpassword,String password)throws FormVException
 	{
-		if( name != null )
+		if(confpassword!=null)
 		{
-			if( name.length() < MIN_NAME_LENGTH )
-				throw new FormVException("Le nom doit contenir au moins cinq caractères .");
+			if(!confpassword.equals(password))
+				throw new FormVException("Les mots de passe ne correspondent pas .");
+		}
+		else
+			throw new FormVException("Merci de confirmer votre mot de passe .");
+	}
+	
+	private void checkFName(String fname)throws FormVException
+	{
+		if( fname != null )
+		{
+			if( fname.length() < MIN_FNAME_LENGTH )
+				throw new FormVException("Le nom doit contenir au moins "+MIN_FNAME_LENGTH+" caractères .");
 		}
 		else
 			throw new FormVException("Veuillez saisire votre nom.");
 	}
 	
-	
+	private void checkLName(String lname)throws FormVException
+	{
+		if( lname != null )
+		{
+			if( lname.length() < MIN_LNAME_LENGTH )
+			{
+				throw new FormVException("Le prenom doit contenir au moins "+MIN_LNAME_LENGTH+" caractères .");
+			}
+		}
+		else
+			throw new FormVException("Veuillez saisire votre prenom.");
+	}
 	
 	
 	

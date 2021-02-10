@@ -6,7 +6,7 @@
     <title>Sweet Home - Home</title>
 
     <!--|| Import Bootstrap ||-->
-    <link rel="stylesheet" href="./assets/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap/bootstrap.min.css"/>" />
 
     <!--|| Import FontAwsome for icons ||-->
     <link
@@ -17,7 +17,7 @@
     />
 
     <!--|| Import style file => home.css ||-->
-    <link rel="stylesheet" href="./assets/css/home.css" />
+    <link rel="stylesheet" href="<c:url value="/assets/css/home.css"/>" />
 
     <!--|| Import OpenSans font style ||-->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -32,14 +32,7 @@
       <nav class="navbar navbar-expand-lg nav-header">
         <div class="container-fluid d-flex justify-content-between">
           <div class="lang-devise d-flex align-items-center">
-            <div class="lang d-flex">
-              <div class="logo">
-                <img
-                  src="./assets/images/icons/english.png"
-                  alt="english"
-                  width="60%"
-                />
-              </div>
+            <div class="lang d-flex">        
               <select
                 name="language"
                 id="language"
@@ -65,27 +58,25 @@
               </select>
             </div>
           </div>
-          <div
-            class="user-info-header d-flex align-items-center flex-row-reverse"
-          >
-            <div class="wishlist mx-2"><a href="#">My wishlist</a></div>
+          <div class="user-info-header d-flex align-items-center flex-row-reverse" >
+            <div class="wishlist mx-2"><a href="<c:url value="/WishList"/>" >My wishlist</a></div>
             <h4 class="nav-deviser">|</h4>
             <div class="account mx-2"><a href="#">My account</a></div>
             <h4 class="nav-deviser">|</h4>
-            <div class="sales mx-2"><a href="#">My sales</a></div>
+            <div class="sales mx-2"><a href="<c:url value="/Sell"/>" >My sales</a></div>
           </div>
+          
         </div>
       </nav>
     </div>
-    <nav class="navbar navbar-expand-lg main-nav sticky-top py-2">
+    <nav class="navbar navbar-expand-lg main-nav sticky-top py-1">
       <!-- Nav logo left -->
       <div class="logo">
-        <a href="./home.html" class="navbar-brand">
+        <a href="<c:url value="/Home"/>" class="navbar-brand">
           <img
-            src="./assets/images/icons/logo dark.jpg"
+            src="<c:url value="/assets/images/icons/logo dark.jpg"/>"
             alt="logo"
-            width="133"
-            height="79"
+            
           />
         </a>
       </div>
@@ -105,7 +96,7 @@
       <div class="navbar-items collapse navbar-collapse" id="navbar-items">
         <ul class="navbar-nav menu-nav">
           <li class="nav-item">
-            <a href="./home.html" class="nav-link active" aria-current="page">Home</a>
+            <a href="<c:url value="/Home"/>" class="nav-link active" aria-current="page">Home</a>
           </li>
           <li class="nav-item dropdown">
             <a
@@ -140,16 +131,16 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="./product.html" class="nav-link">Products</a>
+            <a href="<c:url value="/Products"/>" class="nav-link">Products</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Sell</a>
+            <a href="<c:url value="Sell"/>" class="nav-link">Sell</a>
           </li>
           <li class="nav-item">
-            <a href="./contact_us2.html" class="nav-link">Contact</a>
+            <a href="<c:url value="/ContactUs"/>" class="nav-link">Contact</a>
           </li>
           <li class="nav-item">
-            <a href="./navbar.html" class="nav-link">About us</a>
+            <a href="<c:url value="/AboutUs"/>" class="nav-link">About us</a>
           </li>
         </ul>
       </div>
@@ -215,8 +206,8 @@
               class="dropdown-menu login-signup"
               aria-labelledby="login-dropdown"
             >
-              <li><a class="dropdown-item" href="./htmlfilebyme.html">Login</a></li>
-              <li><a class="dropdown-item" href="./sign_up page.html">Sign up</a></li>
+              <li><a class="dropdown-item" href="<c:url value="/SignIn"/>" >Login</a></li>
+              <li><a class="dropdown-item" href="<c:url value="/SignUp"/>" >Sign up</a></li>
             </ul>
           </li>
           <h4 class="nav-deviser">|</h4>
@@ -245,74 +236,7 @@
                 </div>
                 <hr class="cart-line" />
                 <div class="cart-body">
-                  <ul class="list-items" id="list-times">
-                    <!-- Prototype -->
-                    <!-- <li class="cart-product">
-                      <div class="product idProduct4">
-                        <div class="row">
-                          <div class="col">
-                            <div class="product-title">
-                              Severin Kaffeevollautomat KV 8090
-                            </div>
-                            <div class="product-price">
-                              <div class="changeQuntite">                             
-                                <span class="quantity m-1">1</span>
-                                x <span class="price m-2">10000.00</span>                                
-                              </div>
-                              <div class="quantitybtn my-2">
-                                <div class="add btn btn-outline-primary mx-2">+</div>
-                                <div class="remove btn btn-outline-secondary mx-2">-</div>
-                              </div>
-                              
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="product-image">
-                              <img
-                                src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
-                                width="80%"
-                                alt=""
-                              />
-                              <button type="button" class="btn-close btn-outline-secondary"></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li> -->
-                    <!-- <li>item test 2</li> -->
-                    <!-- <li class="cart-product">
-                      <div class="product idProduct1">
-                        <div class="row">
-                          <div class="col">
-                            <div class="product-title">
-                              Severin Kaffeevollautomat KV 8090
-                            </div>
-                            <div class="product-price">
-                              <div class="changeQuntite">                             
-                                <span class="quantity m-1">1</span>
-                                x <span class="price m-2">10000.00</span>                                
-                              </div>
-                              <div class="quantitybtn my-2">
-                                <div class="add btn btn-outline-primary mx-2">+</div>
-                                <div class="remove btn btn-outline-secondary mx-2">-</div>
-                              </div>
-                              
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="product-image">
-                              <img
-                                src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
-                                width="80%"
-                                alt=""
-                              />
-                              <button type="button" class="btn-close btn-outline-secondary"></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li> -->
-                  </ul>
+                  <ul class="list-items" id="list-times"></ul>
                 </div>
 
                 <div class="cart-footer">
@@ -348,10 +272,10 @@
           <div class="free-shipping item">
             <div class="icon">
               <img
-                src="./assets/images/icons/shipping.png"
+                src="<c:url value="/assets/images/icons/shipping.png"/>"
                 alt="free shipping"
-                width="78"
-                height="78"
+                width="68"
+                height="68"
               />
             </div>
             <div class="content">
@@ -364,10 +288,10 @@
           <div class="customer-support item">
             <div class="icon">
               <img
-                src="./assets/images/icons/headset.png"
+                src="<c:url value="/assets/images/icons/headset.png"/>"
                 alt="support icon"
-                width="54"
-                height="54"
+                width="44"
+                height="44"
               />
             </div>
             <div class="content">
@@ -378,10 +302,10 @@
           <div class="secure-payement item">
             <div class="icon">
               <img
-                src="./assets/images/icons/secure wallet.png"
+                src="<c:url value="/assets/images/icons/secure wallet.png"/>"
                 alt="secure wallet icon"
-                width="49"
-                height="49"
+                width="39"
+                height="39"
               />
             </div>
             <div class="content">
@@ -399,7 +323,7 @@
           <div class="card my-5 odd">
             <div class="image">
               <img
-                src="./assets/images/home/categories/Accessory Kit for Café C2S900P3MD1 - Brushed Bronze.jpg"
+                src="<c:url value="/assets/images/home/categories/Accessory Kit for Café C2S900P3MD1 - Brushed Bronze.jpg"/>"
                 class="card-img-top"
                 alt="stove"
               />
@@ -411,7 +335,7 @@
           <div class="card my-5 even">
             <div class="image">
               <img
-                src="./assets/images/home/categories/Accessory Kit for Café Microwaves - Brushed Bronze.jpg"
+                src="<c:url value="/assets/images/home/categories/Accessory Kit for Café Microwaves - Brushed Bronze.jpg"/>"
                 class="card-img-top"
                 alt="stove"
               />
@@ -423,7 +347,7 @@
           <div class="card my-5 odd">
             <div class="image">
               <img
-                src="./assets/images/home/categories/ZLINE Kitchen and Bath ZLINE 36 in_  Designer Series Wall Mount Range Hood (655-BCXXX-36)-655-BCXXX-36 - The Home Depot.jpg"
+                src="<c:url value="/assets/images/home/categories/ZLINE Kitchen and Bath ZLINE 36 in_  Designer Series Wall Mount Range Hood (655-BCXXX-36)-655-BCXXX-36 - The Home Depot.jpg"/>"
                 class="card-img-top"
                 alt="stove"
               />
@@ -435,7 +359,7 @@
           <div class="card my-5 even">
             <div class="image">
               <img
-                src="./assets/images/home/categories/Cafe Refrigerator Handle Kit in Brushed Copper-CXQB4H4PNCU - The Home Depot.jpg"
+                src="<c:url value="/assets/images/home/categories/Cafe Refrigerator Handle Kit in Brushed Copper-CXQB4H4PNCU - The Home Depot.jpg"/>"
                 class="card-img-top"
                 alt="stove"
               />
@@ -451,7 +375,7 @@
         <div class="backgroundImage">
           <div class="image-back">
             <img
-              src="./assets/images/home/categories-main/Nespresso Creatista Plus Espresso Machine by Breville.jpg"
+              src="<c:url value="/assets/images/home/categories-main/Nespresso Creatista Plus Espresso Machine by Breville.jpg"/>"
               alt="Nesspresso"
               width="550"
               height="550"
@@ -461,7 +385,7 @@
           <div class="title">ESPRESSO</div>
           <div class="image-front">
             <img
-              src="./assets/images/home/categories-main/Nespresso Creatista Plus Espresso Machine by Breville.jpg"
+              src="<c:url value="/assets/images/home/categories-main/Nespresso Creatista Plus Espresso Machine by Breville.jpg"/>"
               alt="Nesspresso"
               width="480"
               height="480"
@@ -483,12 +407,12 @@
                 <img
                   src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
                   alt="cofee maker"
-                  width="204"
-                  height="204"
+                  
+                  class="img-thumbnail"
                 />
-                <button type="button" class="btn">
+                <!-- <button type="button" class="btn">
                   <div class="productColor"></div>
-                </button>
+                </button> -->
               </div>
               <div class="productPrice"><span>10000.00</span> DH</div>
             </div>
@@ -520,27 +444,18 @@
                 <img
                   src="./assets/images/home/categories-main/Delonghi EC680R DEDICA 15-Bar Pump Espresso Machine, Red.png"
                   alt="cofee maker"
-                  width="170"
-                  height="220"
+                  
                   id="red-cofee"
-                  class=""
-                />
-                <img
-                  src="./assets/images/home/categories-main/Best Espresso Machines of 2020_ Breville, De'Longhi, and More (1).jpg"
-                  alt="cofee maker"
-                  width="170"
-                  height="220"
-                  id="white-cofee"
-                  class="d-none"
-                />
-                <div class="colors d-flex">
+                  class="img-thumbnail"
+                />                
+                <!-- <div class="colors d-flex">
                   <button type="button" class="btn">
                     <div class="productColor selectedColor" id="red"></div>
                   </button>
                   <button type="button" class="btn">
                     <div class="productColor" id="white"></div>
                   </button>
-                </div>
+                </div> -->
               </div>
               <div class="productPrice"><span>9000.00</span> DH</div>
             </div>
@@ -566,7 +481,7 @@
         <div class="backgroundImage">
           <div class="image-back">
             <img
-              src="./assets/images/home/categories-main/20 L 800W Countertop Microwave.jpg"
+              src="<c:url value="/assets/images/home/categories-main/20 L 800W Countertop Microwave.jpg"/>"
               alt="Nesspresso"
               width="550"
               height="550"
@@ -576,7 +491,7 @@
           <div class="title">MICROWAVE</div>
           <div class="image-front">
             <img
-              src="./assets/images/home/categories-main/20 L 800W Countertop Microwave.jpg"
+              src="<c:url value="/assets/images/home/categories-main/20 L 800W Countertop Microwave.jpg"/>"
               alt="Nesspresso"
               width="480"
               height="480"
@@ -599,12 +514,11 @@
                 <img
                   src="./assets/images/home/categories-main/Tesco non food _ Formerly Tesco Direct _ Tesco.jpg"
                   alt="cofee maker"
-                  width="204"
-                  height="204"
+                  class="img-thumbnail"
                 />
-                <button type="button" class="btn">
+                <!-- <button type="button" class="btn">
                   <div class="productColor"></div>
-                </button>
+                </button> -->
               </div>
               <div class="productPrice"><span>2000.00</span> DH</div>
             </div>
@@ -638,16 +552,15 @@
                 <img
                   src="./assets/images/home/categories-main/Russell Hobbs RHFM2363 23L Microwave.jpg"
                   alt="cofee maker"
-                  width="210"
-                  height="220"
+                  
                   id="red-cofee"
-                  class=""
+                  class="img-thumbnail"
                 />
 
                 <div class="colors d-flex">
-                  <button type="button" class="btn">
+                  <!-- <button type="button" class="btn">
                     <div class="productColor selectedColor"></div>
-                  </button>
+                  </button> -->
                 </div>
               </div>
               <div class="productPrice"><span>2000.00</span>DH</div>
@@ -677,7 +590,7 @@
       <div class="row">
         <div class="col">
           <img
-            src="./assets/images/home/sponsors/logo01.png"
+            src="<c:url value="/assets/images/home/sponsors/logo01.png"/>"
             alt="logo01"
             width="70%"
             height="auto"
@@ -685,7 +598,7 @@
         </div>
         <div class="col">
           <img
-            src="./assets/images/home/sponsors/logo02.png"
+            src="<c:url value="/assets/images/home/sponsors/logo02.png"/>"
             alt="logo02"
             width="70%"
             height="auto"
@@ -693,7 +606,7 @@
         </div>
         <div class="col">
           <img
-            src="./assets/images/home/sponsors/logo03.png"
+            src="<c:url value="/assets/images/home/sponsors/logo03.png"/>"
             alt="logo03"
             width="70%"
             height="auto"
@@ -701,7 +614,7 @@
         </div>
         <div class="col">
           <img
-            src="./assets/images/home/sponsors/logo05.png"
+            src="<c:url value="/assets/images/home/sponsors/logo05.png"/>"
             alt="logo05"
             width="70%"
             height="auto"
@@ -709,7 +622,7 @@
         </div>
         <div class="col">
           <img
-            src="./assets/images/home/sponsors/logo06.png"
+            src="<c:url value="/assets/images/home/sponsors/logo06.png"/>"
             alt="logo06"
             width="65%"
             height="auto"
@@ -725,7 +638,7 @@
         <div class="row">
           <div class="col logo">
             <img
-              src="./assets/images/icons/logo light.png"
+              src="<c:url value="/assets/images/icons/logo light.png"/>"
               alt="logo"
               width="133"
               height="79"
@@ -802,24 +715,18 @@
         <div class="row pages">
           <div class="col title">Pages</div>
           <ul class="pages-list">
-            <li class="page-item"><a href="#">Home</a></li>
-            <li class="page-item"><a href="#">Categories</a></li>
-            <li class="page-item"><a href="#">Products</a></li>
+            <li class="page-item"><a href="<c:url value="/Home"/>">Home</a></li>
+            <li class="page-item"><a href="<c:url value="/Products"/>">Products</a></li>
             <li class="page-item">
-              <a href="./contact_us2.html">Contact Us</a>
+              <a href="<c:url value="/ContactUs"/>">Contact Us</a>
             </li>
-            <li class="page-item"><a href="#">About us</a></li>
+            <li class="page-item"><a href="<c:url value="/AboutUs"/>">About us</a></li>
           </ul>
         </div>
       </div>
     </footer>
 
-
-
-
-
     <!-- Modal for Product detail -->
-
     <!-- Modal -->
     <div class="modal fade" id="productDetail" tabindex="-1" aria-labelledby="DetaitProduct" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
@@ -930,8 +837,8 @@
     </div>
 
     <!--|| JQuery, script file => home.js & bootstrap script file||-->
-    <script src="./assets/js/bootstrap/JQuery.js"></script>
-    <script src="./assets/js/home.js"></script>
-    <script src="./assets/js/bootstrap/bootstrap.min.js"></script>
+    <script src="<c:url value="/assets/js/bootstrap/JQuery.js"/>"></script>
+    <script src="<c:url value="/assets/js/home.js"/>"></script>
+    <script src="<c:url value="/assets/js/bootstrap/bootstrap.min.js"/>"></script>
   </body>
 </html>

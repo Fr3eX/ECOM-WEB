@@ -49,14 +49,18 @@ nav {
 .lang-devise .lang {
     height: 40px;
 }
+.lang-devise select,
+.user-info-header{
+    font-size:14px;
+}
 
-.lang .logo {
+/* .lang .logo {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
-}
+} */
 
 .lang-devise select {
     border: none;
@@ -67,6 +71,7 @@ nav {
 .nav-deviser {
     color: #707070;
     margin-top: 10px;
+    margin-bottom:14px;
 }
 
 .user-info-header a {
@@ -90,6 +95,9 @@ nav {
     color: #191919;
     position: relative;
     margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login-signup {
@@ -102,7 +110,7 @@ nav {
 
 .main-nav .nav-item .nav-link {
     color: #191919;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .main-nav .nav-item .nav-link.active {
@@ -188,13 +196,12 @@ nav {
 
 .nav-right-items .wishlist-icon i {
     color: #191919;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .search-bar {
     left: -200px;
     border: none;
-
 }
 
 .search-icon::after {
@@ -380,7 +387,45 @@ nav {
 }
 
 
+.nav-profile-image{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
 
+.navbar-toggler{
+    color: #191919;
+}
+
+
+/* Query */
+.navbar-brand img{
+    width:113px;
+    height:59px;
+}
+@media(max-width: 991px){
+    .nav-right-items .navbar-nav{
+        flex-direction: row;
+    }
+}
+@media (max-width: 1245px) { 
+    
+    .main-nav .nav-item .nav-link {
+        color: #191919;
+        font-size: 12px;
+    }
+}
+
+@media(min-width:1245px){
+    .navbar-brand img{
+        width:133px;
+        height:79px;
+    }
+    .main-nav .nav-item .nav-link {
+        color: #191919;
+        font-size: 16px;
+    }
+}
 
 
 /* Footer style */
@@ -441,7 +486,7 @@ footer .container .row {
 }
 
 .col .sub-btn .btn::after {
-    font-family: "Font Awesome 5 Free";
+    /* font-family: "Font Awesome 5 Free"; */
     font-weight: 900;
     content: "\f061";
     margin-left: 15px;

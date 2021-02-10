@@ -8,30 +8,26 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 
-public class FactoryInitializer implements ServletContextListener {
+public class ServletListener implements ServletContextListener {
 	
 	/*
 	 * 
 	 * 	Listener for init the factory and store the object on Application scope
 	 * 
 	 */
-	
 	private static final String UNIT_NAME="FIRST_UNIT";
-	private static final String ATT_FACTORY="FACTORY";
+	private static final String FACTORY_APPATTRIBUTE="FACTORY";
 	
-	private EntityManagerFactory factory;
+
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-		
 	
-		this.factory=Persistence.createEntityManagerFactory(UNIT_NAME);
+		EntityManagerFactory factory=Persistence.createEntityManagerFactory(UNIT_NAME);
 		
 		ServletContext context=sce.getServletContext();
 		
-		context.setAttribute(ATT_FACTORY, this.factory);
-		
-		
+		context.setAttribute(FACTORY_APPATTRIBUTE, factory);
 	
 	}
 	
