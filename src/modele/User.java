@@ -24,6 +24,7 @@ public class User {
 	  private String typeUser;
 	  private Date dateDerniereConnexion;
 	  private Date dateCreation;
+	  private String imgPath;
   
 public User() {
 	super();
@@ -130,6 +131,15 @@ public Date getDateCreation() {
 }
 public void setDateCreation(Date dateCreation) {
 	this.dateCreation = dateCreation;
+}
+
+
+public String getImgPath() {
+	return imgPath;
+}
+
+public void setImgPath(String imgPath) {
+	this.imgPath = imgPath;
 }
 
 @Override

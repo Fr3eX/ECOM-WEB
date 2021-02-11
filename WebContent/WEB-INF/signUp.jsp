@@ -19,7 +19,7 @@
       crossorigin="anonymous"
     />
   </head>
-
+<%-- 
   <c:choose>
     <c:when test="${error == \"false\" && !empty requestScope.USER }">
     	<body onload="swal({title:'Status',text:'${requestScope.FORM.results}', icon:'success', showCancelButton:true, confirmButtonColor:'#3085d6', cancelButtonColor:'#d33',confirmButtonText:'<a href=\"<c:url value="/SignIn"/>\">Login</a>'})">
@@ -30,7 +30,8 @@
     </c:otherwise>
     
 	</c:choose>
-  
+  --%>
+  <body>
 	  <div class="logo"><a href="<c:url value="/Home"/>"><img src="<c:url value="/assets/images/icons/logo light.png"/>" alt=""></a></div>
     <div class="container">
       <div class="welcome">

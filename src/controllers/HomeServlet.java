@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/Home")
-public class Home extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static final String VUE="/WEB-INF/home.jsp";
    
@@ -25,12 +25,12 @@ public class Home extends HttpServlet {
     }
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
-	}
+		   	
+    	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+    }
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	}

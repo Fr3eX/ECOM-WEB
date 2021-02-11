@@ -56,13 +56,13 @@ public class SignInForm {
 					    /* PASSWORD ENCRYPTION*/
 					    passwordEncryptor.setAlgorithm( "SHA-256" );
 						passwordEncryptor.setPlainDigest( false );
-						
-						String cryptedPassword=passwordEncryptor.encryptPassword(password);
-					
-						if(tmp==null || !tmp.getPassword().equals(cryptedPassword))
+		
+						if(tmp==null || !passwordEncryptor.checkPassword(password, tmp.getPassword()))
 						{
 							this.setErrors(FIELD_EMAIL, "Email ou mot de passe incorrecte");
 						}
+						else
+							user=tmp;
 				 }
 				 else
 					 this.results="Échec de la connexion . ";
