@@ -55,6 +55,14 @@ public class Produit {
 	@JoinColumn(name = "Categori_Id")
     private Categorie categorie;
 
+	@ManyToOne
+	@JoinColumn(name = "vendeur_Id")
+    private Vendeur vendeur;
+	
+	private boolean newProduct;
+	
+	private String imagePath;
+	
 	public Produit() {
 		super();
 	}
@@ -154,5 +162,30 @@ public class Produit {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+
+	public Vendeur getVendeur() {
+		return vendeur;
+	}
+
+	public void setVendeur(Vendeur vendeur) {
+		this.vendeur = vendeur;
+	}
+
+	public boolean isNewProduct() {
+		return newProduct;
+	}
+
+	public void setNewProduct(boolean newProduct) {
+		this.newProduct = newProduct;
+	}
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 	
 }
