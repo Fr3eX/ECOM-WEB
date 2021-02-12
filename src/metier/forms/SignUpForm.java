@@ -12,11 +12,14 @@ import org.jasypt.util.password.ConfigurablePasswordEncryptor;
 import dao.exceptions.DAOException;
 import dao.interfaces.DAOUser;
 import metier.exceptions.FormVException;
+import modele.Acheteur;
 import modele.User;
 
 public class SignUpForm  {
 
 	private DAOUser dao_user;
+	
+	private static final String DEFAULT_PROFILE_IMAGE_PATH="default.png";
 	
 	private static final Integer MIN_FNAME_LENGTH=4;
 	private static final Integer MIN_LNAME_LENGTH=4;
@@ -32,9 +35,9 @@ public class SignUpForm  {
 	private Map<String,String>errors=new HashMap<String,String>();
 	private String results;
 	
-	public SignUpForm(DAOUser user)
+	public SignUpForm(DAOUser dao_user)
 	{
-		this.dao_user=user;
+		this.dao_user=dao_user;
 	}
 
 	public User signUp(HttpServletRequest request)
@@ -45,19 +48,31 @@ public class SignUpForm  {
 		String password=this.getFieldValue(request, FIELD_PASSWORD);
 		String cpassword=this.getFieldValue(request, FIELD_CONFPASSWORD);
 		
-		User user=new User();
+		/* Create account as buyer */
+		
+		User user=new Acheteur();
 		
 		try {
+			
 			this.processFName(fname, user);
 			this.processLName(lname, user);
 			this.processEmail(email, user);
 			this.proccessPassword(password,cpassword, user);
 			
 			if(this.errors.isEmpty())
-				this.dao_user.addUser(user);
-			
+			{
+				try
+				{
+					user.setImgPath(DEFAULT_PROFILE_IMAGE_PATH);
+					this.dao_user.addUser(user);
+				}catch (DAOException e) {
+					this.setErrors(FIELD_EMAIL, "L'email que vous avez saisie existe déja .");
+				}
+			}
 			else
 				this.results="Échec de l'inscription";
+			
+			
 		} catch (DAOException e) {
 			this.results="Erreur imprévu merci de réessayer plus tard .";
 		}
@@ -106,22 +121,25 @@ public class SignUpForm  {
 	
 	private void proccessPassword(String password,String confPassword,User user)
 	{
+		String cryptedPassword=password;
 		try
 		{
 			this.checkPassword(password);
 			this.checkCPassword(confPassword, password);
+		   
+			ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+			
+		    /* PASSWORD ENCRYPTION*/
+		    passwordEncryptor.setAlgorithm( "SHA-256" );
+			passwordEncryptor.setPlainDigest( false );
+			
+			cryptedPassword=passwordEncryptor.encryptPassword(password);
+			
+			
 		}
 		catch (FormVException e) {
 			this.setErrors(FIELD_PASSWORD, e.getMessage());
 		}
-		
-	    ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
-		
-	    /* PASSWORD ENCRYPTION*/
-	    passwordEncryptor.setAlgorithm( "SHA-256" );
-		passwordEncryptor.setPlainDigest( false );
-		
-		String cryptedPassword=passwordEncryptor.encryptPassword(password);
 		
 		user.setPassword(cryptedPassword);
 	}
@@ -138,7 +156,7 @@ public class SignUpForm  {
 				 *  Check if the email exist in the persistence context 
 				 */
 				if(this.dao_user.isEmailExist(email))
-					throw new FormVException("L'email que vous avez saisie il existe déja .");		
+					throw new FormVException("L'email que vous avez saisie existe déja .");		
 				
 			}
 			else

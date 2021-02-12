@@ -13,7 +13,11 @@
 			
 				<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/ECOM_WEB"/>
 				<property name="hibernate.connection.username" value="root"/>
+<<<<<<< HEAD
 				<property name="hibernate.connection.password" value="FSTSelalja001"/>
+=======
+				<property name="hibernate.connection.password" value=""/>
+>>>>>>> 1545dc70833b996eacccdb096af4bcd03315052c
 				<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
 				<property name="hibernate.hbm2ddl.auto" value="update"/>
 				<property name="hibernate.show_sql" value="true"/>

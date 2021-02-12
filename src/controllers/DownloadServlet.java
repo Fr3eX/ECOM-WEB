@@ -30,18 +30,25 @@ public class DownloadServlet extends HttpServlet {
 		
 		BufferedInputStream in=null;
 		BufferedOutputStream out=null;
-
+		File file=null;
+		
 		String pathDes=this.getServletConfig().getInitParameter(PATH);
 		String filePath=request.getPathInfo();
 		
-		if(filePath==null || filePath.equals("/"))
+		if(filePath==null || filePath.equals("/") )
 		{
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;
 		}
 
 		filePath=URLDecoder.decode(filePath,"UTF-8");
-		File file=new File(pathDes,filePath);
+		try {
+			 file=new File(pathDes,filePath);
+		} catch (Exception e) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+			return;
+		}
+		
 		
 		if(!file.exists())
 		{
@@ -71,6 +78,9 @@ public class DownloadServlet extends HttpServlet {
 				out.write(buff, 0, lenght);
 			
 		} 
+		catch (Exception e) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
 		finally {
 			try {
 				in.close();

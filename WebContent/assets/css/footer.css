@@ -1,0 +1,179 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #FEFDF0;
+    scroll-behavior: smooth;
+}
+
+
+/* Footer style */
+
+footer {
+    width: 100%;
+    height: auto;
+    background-color: rgb(46, 42, 39, .85);
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; */
+}
+
+footer .container .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.col-5.sub .title {
+    text-transform: uppercase;
+    font-size: 22px;
+    color: #EEEEEE;
+    font-weight: 550;
+}
+
+.col-5.sub .sub-title {
+    font-size: 13px;
+    color: #EEEEEE;
+}
+
+.col-5 .sub-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-5 .sub-btn input {
+    width: 300px;
+    height: 40px;
+    background: rgb(0, 0, 0, .32);
+    color: #EEEEEE;
+    border-radius: 2px;
+    border: none;
+}
+
+.col-5 .sub-btn .btn {
+    background: #191919;
+    color: #EEEEEE;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    margin-left: 15px;
+    border-radius: 2px;
+}
+
+.col-5 .sub-btn .btn::after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f061";
+    margin-left: 15px;
+}
+
+.footer-devider {
+    border: 2px solid #fff;
+    width: 96%;
+    border-radius: 100px;
+    margin: 0 auto;
+}
+
+.footer-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.footer-content .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+}
+
+.footer-content .col.company {
+    text-transform: uppercase;
+    color: #EEEEEE;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 28px;
+    margin-bottom: 18px;
+}
+
+.footer-content .col.title {
+    text-transform: uppercase;
+    color: #EEEEEE;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 16px;
+    margin-bottom: 18px;
+    /* text-align: center; */
+}
+
+.footer-content .follow-us {
+    width: 200px;
+}
+
+.footer-content .col.body .item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+}
+
+.footer-content .col.body .item .logo {
+    margin-right: 10px;
+}
+
+.footer-content .col.body p, .footer-content .col.footer, .footer-content .col.body .item .logo, .footer-content .col.body .item .name {
+    font-size: 14px;
+    color: #C9D2D8;
+}
+
+.col.tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 15px;
+}
+
+.col.tags .tag {
+    color: #C9D2D8;
+    border-radius: 30px;
+    background-color: transparent;
+    border: 1px solid #6A6975;
+    height: 30px;
+    width: auto;
+    padding: 5px 10px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+}
+
+.footer-content .pages {
+    width: 200px;
+    text-align: center;
+}
+
+.footer-content .pages .pages-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pages .pages-list .page-item {
+    list-style: none;
+}
+
+.pages .pages-list .page-item a {
+    text-decoration: none;
+    color: #C9D2D8;
+    font-size: 14px;
+}

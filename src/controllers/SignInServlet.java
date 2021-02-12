@@ -46,6 +46,15 @@ public class SignInServlet extends HttpServlet {
     	}
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		HttpSession session=request.getSession();
+		
+		if(session.getAttribute(USER_S_SCOPE_ATTRIBUTE) != null)
+		{
+			//REDIRECTION AND NOT FORWARDING ! 
+			response.sendRedirect(request.getContextPath() + HOME_VUE);
+			return;
+		}
+		
 		this.getServletContext().getRequestDispatcher(FAILURE_VUE).forward(request, response);
 	}
 
@@ -68,6 +77,7 @@ public class SignInServlet extends HttpServlet {
 		
 		if(form.getErrors().isEmpty())
 		{
+				System.out.println(user.getNom());
 				session.setAttribute(USER_S_SCOPE_ATTRIBUTE, user);
 				response.sendRedirect(request.getContextPath() + HOME_VUE);
 				return;

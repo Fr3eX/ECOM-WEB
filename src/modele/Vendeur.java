@@ -1,12 +1,15 @@
 package modele;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity 
 @Table(name = "T_VENDEUR")
-@PrimaryKeyJoinColumn(name = "ID_VENDEUR")
+@PrimaryKeyJoinColumn(name = "vendeur_id")
 public class Vendeur extends User {
 
 	private Double chiffreAffaireVente;
@@ -14,6 +17,9 @@ public class Vendeur extends User {
 	private String description;
 	private Integer appreciation;
 	private Integer typeVendeur;
+	
+	@OneToMany(mappedBy = "vendeur")
+	private Collection<Produit> produits;
 	
 	public Vendeur(Double chiffreAffaireVente, Integer nombreVente, String description, Integer appreciation,
 			Integer typeVendeur) {
@@ -67,6 +73,30 @@ public class Vendeur extends User {
 
 	public void setTypeVendeur(int typeVendeur) {
 		this.typeVendeur = typeVendeur;
+	}
+
+	public Collection<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setChiffreAffaireVente(Double chiffreAffaireVente) {
+		this.chiffreAffaireVente = chiffreAffaireVente;
+	}
+
+	public void setNombreVente(Integer nombreVente) {
+		this.nombreVente = nombreVente;
+	}
+
+	public void setAppreciation(Integer appreciation) {
+		this.appreciation = appreciation;
+	}
+
+	public void setTypeVendeur(Integer typeVendeur) {
+		this.typeVendeur = typeVendeur;
+	}
+
+	public void setProduits(Collection<Produit> produits) {
+		this.produits = produits;
 	}
 	
 	
