@@ -35,9 +35,9 @@ public class SignUpForm  {
 	private Map<String,String>errors=new HashMap<String,String>();
 	private String results;
 	
-	public SignUpForm(DAOUser user)
+	public SignUpForm(DAOUser dao_user)
 	{
-		this.dao_user=user;
+		this.dao_user=dao_user;
 	}
 
 	public User signUp(HttpServletRequest request)
@@ -53,6 +53,7 @@ public class SignUpForm  {
 		User user=new Acheteur();
 		
 		try {
+			
 			this.processFName(fname, user);
 			this.processLName(lname, user);
 			this.processEmail(email, user);
@@ -60,8 +61,13 @@ public class SignUpForm  {
 			
 			if(this.errors.isEmpty())
 			{
-				user.setImgPath(DEFAULT_PROFILE_IMAGE_PATH);
-				this.dao_user.addUser(user);
+				try
+				{
+					user.setImgPath(DEFAULT_PROFILE_IMAGE_PATH);
+					this.dao_user.addUser(user);
+				}catch (DAOException e) {
+					this.setErrors(FIELD_EMAIL, "L'email que vous avez saisie existe déja .");
+				}
 			}
 			else
 				this.results="Échec de l'inscription";
@@ -150,7 +156,7 @@ public class SignUpForm  {
 				 *  Check if the email exist in the persistence context 
 				 */
 				if(this.dao_user.isEmailExist(email))
-					throw new FormVException("L'email que vous avez saisie il existe déja .");		
+					throw new FormVException("L'email que vous avez saisie existe déja .");		
 				
 			}
 			else
