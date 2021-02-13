@@ -1,13 +1,18 @@
 package dao.implementations;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import dao.exceptions.DAOException;
 import dao.interfaces.DAOCategorie;
 import modele.Categorie;
+
+
 
 public class DAOCategorieImp implements DAOCategorie {
 	
@@ -24,30 +29,72 @@ public class DAOCategorieImp implements DAOCategorie {
 	}
 	
 	
+	
+	@Override
+	public void addCategorie(String nomCategorie) throws DAOException {
+		Categorie cherCat = chercheCategorie(nomCategorie) ;
+		if(cherCat != null) {
+			Categorie categorie = new Categorie();
+		
+			categorie.setNomCategorie(nomCategorie);
+			
+			EntityTransaction transaction = entityManager.getTransaction();
+			
+			/* Demarrer la transaction */
+			transaction.begin();
+			
+			try {
+				/* enregister le produit categorie dans la base de donnee */
+				entityManager.persist(categorie);
+				/* Validation de la transaction si tout se passe bien */
+				transaction.commit();
+			}catch(Exception e) {
+				/* Annuler la transaction en cas d'exception */
+				transaction.rollback();
+				e.printStackTrace();
+				System.out.println("il un probleme");
+			}
+		}else {
+			System.out.println("cette Categorie existe deja") ;
+		}
+		
+	}
+	
+	
+	
 	@Override
 	public void addCategorie(Categorie categorie) throws DAOException {
-		EntityTransaction transaction = entityManager.getTransaction();
-		/* Demarrer la transaction */
-		transaction.begin();
-		try {
-		/* enregister le produit categorie dans la base de donnee */
-		entityManager.persist(categorie);
-		/* Validation de la transaction si tout se passe bien */
-		
-		transaction.commit();
-		}catch(Exception e) {
-			/* Annuler la transaction en cas d'exception */
-			transaction.rollback();
-			e.printStackTrace();
-			System.out.println("il un probleme");
+		Categorie cherCat = chercheCategorie(categorie.getNomCategorie()) ;
+		if(cherCat != null) {			
+			EntityTransaction transaction = entityManager.getTransaction();
+			/* Demarrer la transaction */
+			transaction.begin();
+			
+			try {
+				/* enregister le produit categorie dans la base de donnee */
+				entityManager.persist(categorie);
+				/* Validation de la transaction si tout se passe bien */
+				transaction.commit();
+			}catch(Exception e) {
+				/* Annuler la transaction en cas d'exception */
+				transaction.rollback();
+				e.printStackTrace();
+				System.out.println("il un probleme");
+			}
+		}else {
+			System.out.println("cette Categorie existe deja") ;
 		}
+		
 	}
+	
+	
+	
+	
 
 	@Override
 	public void delCategorie(int id) throws DAOException {
 		  Categorie cat = entityManager.find(Categorie.class, id) ;
 		  entityManager.remove(cat) ;
-		
 	}
 
 	@Override
@@ -56,16 +103,35 @@ public class DAOCategorieImp implements DAOCategorie {
 		return cat;
 	}
 
+	
+	
 	@Override
-	public Categorie loadCategorie(String nomCategorie) throws DAOException {
-		Categorie cat = entityManager.find(Categorie.class, nomCategorie) ;
-		return cat;
+	public Categorie chercheCategorie(String nomCategorie) throws DAOException {
+		List<Categorie> list = listCategorie() ;
+		for (Categorie temp : list) {
+            if(temp.getNomCategorie() == nomCategorie)
+            	return temp ;
+        }
+		return null;
 	}
 
+	
+	
 	@Override
 	public void updateCategorier(Categorie categorie) throws DAOException {
 		entityManager.merge(categorie) ;
 	}
+	
+	
+	
+	@Override
+	public List<Categorie> listCategorie() {
+		Query  query = entityManager.createQuery(" from Categorie") ;
+		List<Categorie>	cate = query.getResultList() ;
+		return cate ;
+	}
+	
+	
 
 	@Override
 	public Boolean isCategorieExist(String nomCategorie) {
