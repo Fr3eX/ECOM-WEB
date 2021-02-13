@@ -58,7 +58,7 @@ public class SignUpServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("OMAR");
 		HttpSession session=request.getSession();
 		
 		if(session.getAttribute(USER_S_SCOPE_ATTRIBUTE) != null)

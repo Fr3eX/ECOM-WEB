@@ -16,7 +16,10 @@ public class User {
 	  private String adresse;
 	  private String userName;
 	  private String password;
+	  
+	  @Column(unique = true)
 	  private String email;
+	  
 	  private String telephone;
 	  private Date dateNaissance;
 	  private String pays;
