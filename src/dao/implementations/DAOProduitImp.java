@@ -40,6 +40,24 @@ public class DAOProduitImp implements DAOProduit{
 		return categorie;
 	}
 	
+	public Categorie loadCategorieByName(String name) throws DAOException {
+		// TODO Auto-generated method stub
+		Categorie categorie=null;
+		EntityTransaction tr=this.manager.getTransaction();
+		try
+		{
+			tr.begin();
+			categorie = ((List<Categorie>)this.manager.createQuery("SELECT C FROM Categorie C where C.nomCategorie =:name").setParameter("name", name).getResultList()).get(0);
+			tr.commit();
+		}
+		catch (Exception e) {
+			tr.rollback();
+			throw new DAOException("Cannot Load product " + e);
+		}
+		
+		return categorie;
+	}
+	
 	public Vendeur loadSeller(Long id) throws DAOException {
 		// TODO Auto-generated method stub
 		Vendeur vendeur=null;

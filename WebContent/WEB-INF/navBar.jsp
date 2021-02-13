@@ -114,7 +114,7 @@
             <a href="<c:url value="/Products"/>" class="nav-link">Products</a>
           </li>
           <li class="nav-item">
-            <a href="<c:url value="/Sell"/>" class="nav-link">Sell</a>
+            <a href="<c:url value="/SellServlet"/>" class="nav-link">Sell</a>
           </li>
           <li class="nav-item">
             <a href="<c:url value="/ContactUs"/>" class="nav-link">Contact</a>
