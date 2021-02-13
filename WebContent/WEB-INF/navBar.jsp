@@ -240,7 +240,7 @@
                 <hr class="cart-line" />
                 <div class="cart-body">
                   <ul class="list-items" id="list-times">
-                    <!-- Carr items list  -->
+                    <!-- Card items list  -->
                   </ul>
                 </div>
 

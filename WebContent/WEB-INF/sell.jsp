@@ -1,3 +1,5 @@
+<%@page import="modele.Produit"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -44,7 +46,72 @@
           <h4 class="myProducts">My products</h4>
         </div>
         <div class="row">
-          <div class="col-4 addProduct">
+        <div class="col productListes">
+        <%if(request.getAttribute("listeProduits")!=null ) {%>
+        <%List<Produit> listeProduits = (List)request.getAttribute("listeProduits"); %>
+        <%int size = listeProduits.size(); %>
+        <%if(size != 0){ %>
+        <c:forEach var="produit" items="${listeProduits }">
+
+               <div class="card m-1">
+              <div class="card-header edit-cart py-0">
+                <div>
+                  <label for="cofeeMaker1WLEdit">Edit</label>
+                  <button
+                    id="cofeeMaker1WLEdit"
+                    type="button"
+                    class="btn btn-link editProduct"
+                    data-bs-toggle="modal"
+                    data-bs-target="#editProductModal"
+                  >
+                    <i class="fas fa-pen"></i>
+                  </button>
+                </div>
+                <div>
+
+                  <label for="cofeeMaker<c:out value="${produit.idProduit }"></c:out>WLDelete">Delete</label>
+                  <button
+                    id="cofeeMaker<c:out value="${produit.idProduit }"></c:out>WLDelete"
+                    type="button"
+                    class="btn btn-link delete"
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmeDeleteModal"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- change id and categorie to be dynamique -->
+              <div class="card-body py-0 " id=<c:out value="${produit.idProduit }"></c:out> category = 'Coffe maker'>
+                <div class="title" ><c:out value="${produit.getDesignation() }"></c:out></div>
+                <div class="productImage">
+                  <img
+                    src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
+                    alt="cofee maker"
+                    
+                    class="img-thumbnail"
+                  />
+                 
+                </div>
+                <div class="productPrice"><span><c:out value="${produit.getPrix() }"></c:out></span> DH</div>
+              </div>
+              <div class="card-footer py-0">
+                <div>
+                  <button
+                    type="button"
+                    class="btn shadow-sm rounded bg-white detail"
+                    data-bs-toggle="modal"
+                    data-bs-target="#productDetail"
+                  >
+                    <span>Details</span><i class="far fa-eye mx-1"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            </c:forEach>
+            <%} }%>
+        
+        <div class="col-4 addProduct">
             <button
               type="button"
               class="btn box bg-secondary text-white"
@@ -54,6 +121,8 @@
               <i class="fas fa-plus"></i>
             </button>
           </div>
+        </div>
+          
         </div>
       </div>
     </div>
@@ -510,12 +579,14 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Deleting Product confirmation</h5>
+          
             <button
               type="button"
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
+            
           </div>
           <div class="modal-body">
             Are you sure that you want to delete this product?
@@ -528,13 +599,15 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
             >
               Cancel
             </button>
+            <form action="deleteProduct" method="post">
+            <input name="productId" value="" id="productId" class="d-none"/>
             <button
-              type="button"
+              type="submit"
               class="btn btn-danger delete-confirmed"
-              data-bs-dismiss="modal"
             >
               Delete
             </button>
+            </form>
           </div>
         </div>
       </div>

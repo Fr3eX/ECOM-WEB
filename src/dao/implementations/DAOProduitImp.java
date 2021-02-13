@@ -135,6 +135,9 @@ public class DAOProduitImp implements DAOProduit{
 			try
 			{
 			    Produit produit = this.manager.find(Produit.class, idProduit);
+			    if(produit == null) {
+			    	System.out.println("test");
+			    }
 			    this.manager.remove(produit);
 			    tr.commit();
 			}
@@ -148,11 +151,12 @@ public class DAOProduitImp implements DAOProduit{
 		List<Produit> list = null;
 		EntityTransaction tr=this.manager.getTransaction();
 		Query query;
-		tr.begin();
+		
 		Vendeur ven = this.loadSeller(idVendeur);
+		tr.begin();
 		try
 		{
-			list = (List<Produit>)this.manager.createQuery("SELECT P FROM Produit P where P.categorie =:cat").setParameter("cat", ven).getResultList();
+			list = (List<Produit>)this.manager.createQuery("SELECT P FROM Produit P where P.vendeur =:ven").setParameter("ven", ven).getResultList();
 			tr.commit();
 		}
 		catch (Exception e) {
