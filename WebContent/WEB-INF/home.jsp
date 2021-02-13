@@ -99,7 +99,7 @@
           <div class="card my-5 odd">
             <div class="image">
               <img
-                src="<c:url value="/assets/images/home/categories/Accessory Kit for CafÃ© C2S900P3MD1 - Brushed Bronze.jpg"/>"
+                src="<c:url value="/assets/images/home/categories/Accessory Kit for Cafe C2S900P3MD1 - Brushed Bronze.jpg"/>"
                 class="card-img-top"
                 alt="stove"
               />
@@ -111,7 +111,7 @@
           <div class="card my-5 even">
             <div class="image">
               <img
-                src="<c:url value="/assets/images/home/categories/Accessory Kit for CafÃ© Microwaves - Brushed Bronze.jpg"/>"
+                src="<c:url value="/assets/images/home/categories/Accessory Kit for Cafe Microwaves - Brushed Bronze.jpg"/>"
                 class="card-img-top"
                 alt="stove"
               />

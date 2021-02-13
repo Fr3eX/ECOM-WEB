@@ -27,6 +27,11 @@ public class Categorie {
 		public Categorie() {
 			super();
 		}
+		
+		public Categorie(int id, String nomC) {
+			this.idCategorie = id ;
+			this.nomCategorie = nomC ;
+		}
 
 		public int getIdCategorie() {
 			return idCategorie;
