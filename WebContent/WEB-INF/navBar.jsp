@@ -87,27 +87,9 @@
             </a>
             
             <ul class="dropdown-menu" aria-labelledby="categories">
-				<c:forEach var="item" items="${listcat}" >
-					<li><a class="dropdown-item" href="#"><c:out value="${item}" /></a></li>
+				<c:forEach var="item" items="${listCategorie}" >
+					<li><a class="dropdown-item" href="#"><c:out value="${item.nomCategorie}" /></a></li>
 				</c:forEach>
-              <li><a class="dropdown-item" href="#">Refrigerator</a></li>
-              <li><a class="dropdown-item" href="#">Freezer</a></li>
-              <li><a class="dropdown-item" href="#">Oven</a></li>
-              <li><a class="dropdown-item" href="#">Microwave</a></li>
-              <li><a class="dropdown-item" href="#">Toaster Oven</a></li>
-              <li><a class="dropdown-item" href="#">Toaster</a></li>
-              <li><a class="dropdown-item" href="#">Dishwasher</a></li>
-              <li><a class="dropdown-item" href="#">Washing Machine</a></li>
-              <li><a class="dropdown-item" href="#">Vacuum</a></li>
-              <li><a class="dropdown-item" href="#">Coffee Maker</a></li>
-              <li><a class="dropdown-item" href="#">Blender</a></li>
-              <li><a class="dropdown-item" href="#">Food Processor</a></li>
-              <li><a class="dropdown-item" href="#">Instant Pot</a></li>
-              <li><a class="dropdown-item" href="#">Cooker</a></li>
-              <li><a class="dropdown-item" href="#">Mixer</a></li>
-              <li><a class="dropdown-item" href="#">Water Heater</a></li>
-              <li><a class="dropdown-item" href="#">Air conditioning</a></li>
-              <li><a class="dropdown-item" href="#">Kitchen hood</a></li>
             </ul>
           </li>
           <li class="nav-item">

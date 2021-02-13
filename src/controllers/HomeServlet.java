@@ -29,7 +29,9 @@ public class HomeServlet extends HttpServlet {
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	DAOCategorieImp dao = new DAOCategorieImp() ;
-    	List<Categorie> listcat =  dao.listCategorie() ; 
+    	List<Categorie> listCat =  dao.listCategorie() ;
+    	
+    	request.setAttribute("listCategorie",listCat );
     	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
     }
