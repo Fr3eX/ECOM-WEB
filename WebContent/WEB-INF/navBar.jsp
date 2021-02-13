@@ -85,7 +85,11 @@
             >
               Categories
             </a>
+            
             <ul class="dropdown-menu" aria-labelledby="categories">
+				<c:forEach var="item" items="${listcat}" >
+					<li><a class="dropdown-item" href="#"><c:out value="${item}" /></a></li>
+				</c:forEach>
               <li><a class="dropdown-item" href="#">Refrigerator</a></li>
               <li><a class="dropdown-item" href="#">Freezer</a></li>
               <li><a class="dropdown-item" href="#">Oven</a></li>

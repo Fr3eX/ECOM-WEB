@@ -6,7 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import dao.implementations.DAOCategorieImp;
+import modele.Categorie;
 
+import java.util.List;
 /**
  * Servlet implementation class Home
  */
@@ -25,7 +28,8 @@ public class HomeServlet extends HttpServlet {
     }
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		   	
+    	DAOCategorieImp dao = new DAOCategorieImp() ;
+    	List<Categorie> listcat =  dao.listCategorie() ; 
     	this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
     }

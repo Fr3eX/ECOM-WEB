@@ -89,14 +89,18 @@ public class DAOCategorieImp implements DAOCategorie {
 	
 	
 	
-	
+	// remove categorie
 
 	@Override
 	public void delCategorie(int id) throws DAOException {
 		  Categorie cat = entityManager.find(Categorie.class, id) ;
-		  entityManager.remove(cat) ;
+		  entityManager.getTransaction().begin();
+		  entityManager.remove(cat);
+		  entityManager.getTransaction().commit();
 	}
 
+	
+	// load categorie by id 
 	@Override
 	public Categorie loadCategorie(int id) throws DAOException {
 		Categorie cat = entityManager.find(Categorie.class, id) ;
@@ -104,7 +108,7 @@ public class DAOCategorieImp implements DAOCategorie {
 	}
 
 	
-	
+	// check existance of Categorie
 	@Override
 	public Categorie chercheCategorie(String nomCategorie) throws DAOException {
 		List<Categorie> list = listCategorie() ;
@@ -118,8 +122,12 @@ public class DAOCategorieImp implements DAOCategorie {
 	
 	
 	@Override
-	public void updateCategorier(Categorie categorie) throws DAOException {
-		entityManager.merge(categorie) ;
+	public void updateCategorier(int idCategorie , String newNameCategorie) throws DAOException {
+		Categorie cat = loadCategorie(idCategorie) ;
+		cat.setNomCategorie(newNameCategorie);
+		entityManager.getTransaction().begin();
+		entityManager.merge(cat) ;
+		entityManager.getTransaction().commit();
 	}
 	
 	
