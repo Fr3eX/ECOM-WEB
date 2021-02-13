@@ -829,9 +829,9 @@ footer .container .row {
     text-decoration: underline;
 }
 
-.imageNotValide, .emailNotValide {
+/* .titleNotValide, .imgNotValide, .DescNotValide, .CatNotValide, .QuantNotVali {
 	font-size: 14px;
 	color: red;
 	text-align:left;
 	margin-left: 50px;
-}
+} */
