@@ -146,6 +146,25 @@ public class DAOProduitImp implements DAOProduit{
 				throw new DAOException("Cannot remove produit" + e);
 			}
 	  }
+	   //afficher tous les produit
+		public List<Produit> getProduits(){
+			List<Produit> list = null;
+			EntityTransaction tr=this.manager.getTransaction();
+			Query query;
+			
+			tr.begin();
+			try
+			{
+				list = (List<Produit>)this.manager.createQuery("SELECT P FROM Produit P").getResultList();
+				tr.commit();
+			}
+			catch (Exception e) {
+				tr.rollback();
+				throw new DAOException("Cannot Load produit " + e);
+			}
+			
+			return list;
+		}
 	   
 	public List<Produit> getProduitsParVendeure(Long idVendeur){
 		List<Produit> list = null;
