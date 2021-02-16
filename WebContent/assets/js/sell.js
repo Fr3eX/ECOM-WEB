@@ -133,6 +133,14 @@ $("#saveChanges").on("click", function () {
 });
 
 // Product
+$(".delete").on("click", function () {
+  var selectedCard = $(this).parent().parent().parent().parent();
+  $(".delete-confirmed").on("click", function () {
+    console.log("delete confirmed <clicked>");
+    $(selectedCard).remove();
+    console.log("item deleted");
+  });
+});
 
 // update photo
 
@@ -256,11 +264,6 @@ $("#addProductImage").on("change", function () {
   uploadProductImage(this);
 });
 
- $('.addNewProduct').click(function(){
-   $('#addNewProduct').click()
- })
- 
- $('.delete').on('click',function(){
- var id = $(this).attr('id')[10];
-  $('#productId').val(id);
- });
+// $('.addNewProduct').click(function(){
+//   $('#addNewProduct').click()
+// })

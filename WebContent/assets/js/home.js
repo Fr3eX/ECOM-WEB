@@ -36,8 +36,7 @@ updateCart();
 
 // Update total price
 const updateTotal = () =>{
-  var totalStr = $('.cart-footer .total .price').text();
-  var total = parseFloat(totalStr);
+
   // Loop on all li items in the cart
   var somme = 0;
   $('.cart-product').each(function(){
@@ -70,72 +69,47 @@ updateTotal();
 //   updateTotal();
 // });
 
-const removeItemCart = () =>{
+const removeItemCart = (id) =>{
+  var prodId = $(id).attr('id'); 
   console.log('close button clicked');
-  var classList = $('#list-times li .btn-close').parentsUntil('#list-times .cart-product');
-  var classAtr = $(classList[3]).attr('class');
-  var selectedId = classAtr.split(/\s+/)[1];
-  console.log(selectedId);
-  $('#list-times li').each(function(){
-    console.log( $('#list-times li .btn-close').parents().find('.' + selectedId).parent());
-    $('#list-times li .btn-close').parents().find('.' + selectedId).parent().remove();
-  });
+  $('li.cart-product .'+prodId).parent().remove()
   updateCart();
   updateTotal();
 }
 
-const addQuantity = () =>{
-  var classList = $('.quantitybtn .add').parentsUntil('#list-times .cart-product');
-  var classAtr = $(classList[4]).attr('class');
-  var selectedId = classAtr.split(/\s+/)[1];
-  console.log('selected id : '+selectedId);
-  var quantity = $('#list-times .product.'+selectedId+' .quantity').text();
+const addQuantity = (id) =>{
+  var prodId = $(id).attr('id'); 
+  // var classList = $('.' + id + ' .add').parentsUntil('.cart-product')[4]
+  // var classAtr = $(classList).attr('class');
+  // var selectedId = classAtr.split(/\s+/)[1];
+  // console.log('selected id : '+selectedId);
+  var quantity = $('#list-times .product.'+prodId+' .quantity').text();
   var quantityInt = parseInt(quantity);
 
   quantityInt += 1;
-  $('#list-times .product.'+selectedId+' .quantity').html(quantityInt);
+  $('#list-times .product.'+prodId+' .quantity').html(quantityInt);
   updateCart();
   updateTotal();
 }
 
-const removeQuantity = ()=>{
-  var classList = $('.quantitybtn .add').parentsUntil('#list-times .cart-product');
-  var classAtr = $(classList[4]).attr('class');
-  var selectedId = classAtr.split(/\s+/)[1];
-  console.log('selected id : '+selectedId);
-  var quantity = $('#list-times .product.'+selectedId+' .quantity').text();
+const removeQuantity = (id)=>{
+  var prodId = $(id).attr('id'); 
+  // var classList = $('.' + id + ' .remove').parentsUntil('.cart-product')[4]
+  // var classAtr = $(classList).attr('class');
+  // var selectedId = classAtr.split(/\s+/)[1];
+  // console.log('selected id : '+selectedId);
+  var quantity = $('#list-times .product.'+prodId+' .quantity').text();
   var quantityInt = parseInt(quantity);
 
   quantityInt -= 1;
-  $('#list-times .product.'+selectedId+' .quantity').html(quantityInt);
+  $('#list-times .product.'+prodId+' .quantity').html(quantityInt);
   if(quantityInt <= 0){
-    $('#list-times .product.'+selectedId+' .quantity').html(1);
+    $('#list-times .product.'+prodId+' .quantity').html(1);
   }
   updateCart();
   updateTotal();
 }
 
-// $('.quantitybtn .add, .quantitybtn .remove').click(function(event){
-//   var target = $(event.target);
-//   var classList = $(this).parentsUntil('#list-times .cart-product');
-//   var classAtr = $(classList[4]).attr('class');
-//   var selectedId = classAtr.split(/\s+/)[1];
-//   console.log('selected id : '+selectedId);
-//   var quantity = $('#list-times .product.'+selectedId+' .quantity').text();
-//   var quantityInt = parseInt(quantity);
-//   if(target.is('.quantitybtn .add')){
-//     quantityInt += 1;
-//     $('#list-times .product.'+selectedId+' .quantity').html(quantityInt);
-//   }
-//   else if(target.is('.quantitybtn .remove')){
-//     quantityInt -= 1;
-//     $('#list-times .product.'+selectedId+' .quantity').html(quantityInt);
-//     if(quantityInt <= 0){
-//       $('#list-times .product.'+selectedId+' .quantity').html(1);
-//     }
-//   }
-  
-// });
 
 
 
@@ -194,6 +168,7 @@ $('.add-to-cart').click(function(event){
     });
   }
   if(flag === false){
+    // var elementPosition = $('.list-items li.cart-product').length;
     var cartItems = document.getElementById('list-times');
     cartItems.innerHTML +=
     '<li class="cart-product">'+
@@ -207,15 +182,15 @@ $('.add-to-cart').click(function(event){
     'x<span class="price m-2">'+price+'</span>'+
     '</div>'+
     '<div class="quantitybtn my-2">'+
-    '<div class="add btn btn-outline-primary mx-2" onClick="addQuantity()" >+</div>'+
-    '<div class="remove btn btn-outline-secondary mx-2" onClick="removeQuantity()" >-</div>'+
+    '<div class="add btn btn-outline-primary mx-2" onClick="addQuantity('+idProduct+')" >+</div>'+
+    '<div class="remove btn btn-outline-secondary mx-2" onClick="removeQuantity('+idProduct+')" >-</div>'+
     '</div>'+
     '</div>'+
     '</div>'+
     '<div class="col">'+
     '<div class="product-image">'+
     '<img src="'+imageSrc+'" width="80%" alt="" />'+
-    '<button type="button" class="btn-close btn-outline-secondary" onClick="removeItemCart()" ></button>'+
+    '<button type="button" class="btn buttonClose btn-close btn-outline-secondary" onClick="removeItemCart('+idProduct+')" ></button>'+
     '</div>'+'</div>'+'</div>'+'</div>'+'</li>'
 
 
@@ -271,7 +246,6 @@ $('.detail').click(function(event){
   
   // model not yet ready
 
-  // color code should be in the database
 
 
 });
@@ -284,7 +258,7 @@ $('.addToCart').click(function(event, idProduct = selectedIdForDetail){
   var title = $('#'+idProduct).find('.title').text();
   var imageSrc = $('#'+idProduct).find('img').attr('src');
   var price = $('#'+idProduct).find('.productPrice span').text();
-
+  var selectedQuantity = parseInt($('.quantity-input').val());
 
   console.log('title : '+ title +'\nimage : ' + imageSrc + '\nprice' + price);
 
@@ -297,7 +271,7 @@ $('.addToCart').click(function(event, idProduct = selectedIdForDetail){
       if(id === idProduct){
         console.log('item already exist in the cart');
         var quantity = parseInt($('#list-times .product.'+id+' .quantity').text());
-        quantity += 1;
+        quantity += selectedQuantity;
         $('#list-times .product.'+id+' .quantity').html(quantity);
         flag = true;
         return false;
@@ -308,8 +282,9 @@ $('.addToCart').click(function(event, idProduct = selectedIdForDetail){
     });
   }
   if(flag === false){
+    // var elementPosition = $('.list-items li.cart-product').length;
     var cartItems = document.getElementById('list-times');
-    var quantity = $(this).parents().find('.quantity-input').val()
+    // var quantity = $(this).parents().find('.quantity-input').val()
     cartItems.innerHTML +=
     '<li class="cart-product">'+
     '<div class="product ' + idProduct+'">'+
@@ -318,19 +293,19 @@ $('.addToCart').click(function(event, idProduct = selectedIdForDetail){
     '<div class="product-title">'+ title + '</div>'+
     '<div class="product-price">'+
     '<div class="changeQuntite">'+
-    '<span class="quantity m-1">'+quantity+'</span>'+
+    '<span class="quantity m-1">'+selectedQuantity+'</span>'+
     'x<span class="price m-2">'+price+'</span>'+
     '</div>'+
     '<div class="quantitybtn my-2">'+
-    '<div class="add btn btn-outline-primary mx-2" onClick="addQuantity()" >+</div>'+
-    '<div class="remove btn btn-outline-secondary mx-2" onClick="removeQuantity()" >-</div>'+
+    '<div class="add btn btn-outline-primary mx-2" onClick="addQuantity('+idProduct+')" >+</div>'+
+    '<div class="remove btn btn-outline-secondary mx-2" onClick="removeQuantity('+idProduct+')" >-</div>'+
     '</div>'+
     '</div>'+
     '</div>'+
     '<div class="col">'+
     '<div class="product-image">'+
     '<img src="'+imageSrc+'" width="80%" alt="" />'+
-    '<button type="button" class="btn-close btn-outline-secondary" onClick="removeItemCart()" ></button>'+
+    '<button type="button" class="btn buttonClose btn-close btn-outline-secondary" onClick="removeItemCart('+idProduct+')" ></button>'+
     '</div>'+'</div>'+'</div>'+'</div>'+'</li>'
   }
   updateCart();
