@@ -1,6 +1,8 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -62,6 +65,10 @@ public class Produit {
 	private boolean newProduct;
 	
 	private String imagePath;
+	
+	@OneToMany(mappedBy="produit")
+	List<Commentaire> commentaires=new ArrayList<Commentaire>();
+	
 	
 	public Produit() {
 		super();
@@ -185,6 +192,14 @@ public class Produit {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public List<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
 	}
 	
 	
