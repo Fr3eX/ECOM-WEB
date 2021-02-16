@@ -84,8 +84,7 @@
               aria-expanded="false"
             >
               Categories
-            </a>
-            
+            </a>  
             <ul class="dropdown-menu" aria-labelledby="categories">
 				<c:forEach var="item" items="${listCategorie}" >
 					<li><a class="dropdown-item" href="#"><c:out value="${item.nomCategorie}" /></a></li>
