@@ -32,10 +32,7 @@
     <c:import url="navBar.jsp"></c:import>
 
     <!-- Body -->
-    
-
-
-
+   
       <!-- user Profile -->
       <div class="container profile-container">
           <form action="" method="">
@@ -161,62 +158,6 @@
               </div>
             </div>
           </form>
-          
-          <hr>
-          <div class="">
-            <div class="ownProducts">
-              <h4 class="myProducts">My products</h4>
-            </div>
-            <div class="row">
-              <div class="col-4 productListes">
-                <div class="card m-1">
-                  
-                  <div class="card-header edit-cart py-0">
-                    <div>
-                      <label for="cofeeMaker1WLEdit">Edit</label>
-                      <button id="cofeeMaker1WLEdit" type="button" class="btn btn-link editProduct" data-bs-toggle="modal" data-bs-target="#editProductModal">
-                        <i class="fas fa-pen"></i>
-                      </button>
-                    </div>
-                    <div>
-                      <label for="cofeeMaker1WLDelete">Delete</label>
-                      <button id="cofeeMaker1WLDelete" type="button" class="btn btn-link delete" data-bs-toggle="modal" data-bs-target="#confirmeDeleteModal">
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body py-0 " id="idProduct4" category = 'Coffe maker'>
-                    <div class="title" >Severin Kaffeevollautomat KV 8090</div>
-                    <div class="productImage">
-                      <img
-                      src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
-                      alt="cofee maker"
-                      width="204"
-                      height="204"
-                      />
-                      <button type="button" class="btn">
-                        <div class="productColor"></div>
-                      </button>
-                    </div>
-                    <div class="productPrice"><span>10000.00</span> DH</div>
-                  </div>
-                  <div class="card-footer py-0">
-                    <div>      
-                      <button type="button" class="btn shadow-sm rounded bg-white detail" data-bs-toggle="modal" data-bs-target="#productDetail">
-                        <Span >Details</Span><i class="far fa-eye mx-1"></i>
-                      </button>
-                    </div>
-      
-                  </div>
-                </div>
-              </div>
-              <div class="col-4 addProduct">
-                  <button type="button" class="btn box bg-secondary text-white" data-bs-toggle="modal" data-bs-target="#addProductModal">
-                    <i class="fas fa-plus"></i>
-                  </button>
-              </div>
-            </div>
-          </div>
       </div>
 
 
