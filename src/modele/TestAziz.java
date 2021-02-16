@@ -16,9 +16,9 @@ public class TestAziz {
 		EntityManagerFactory fac=Persistence.createEntityManagerFactory("FIRST_UNIT");
 		DAOProduitImp pm = new DAOProduitImp(fac);
 		
-		List<Produit> list = pm.getProduitsParVendeure(new Long(1));
+		List<Produit> list = pm.getProduits();
 		
-		System.out.println(list.get(0));
+		System.out.println(list.get(0).getDesignation());
 		/*
 		Produit produit = new Produit();
 		produit.setQuantite(12);
