@@ -264,7 +264,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="" method=''>
+            <form action="<c:url value="/MyAccount"/>" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-sm-12 col-md-4 img">
                   <div class="profile-img">
@@ -279,13 +279,13 @@
                   <div class="row mb-2">
                     <div class="col-6">
                       <div class="form-floating Fname">
-                        <input type="text" class="form-control" id="user-firstName" placeholder=" ">
+                        <input type="text" name="fname" class="form-control" id="user-firstName" placeholder=" ">
                         <label for="user-firstName">First Name</label>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-floating Lname">
-                        <input type="text" class="form-control" id="user-lastName" placeholder=" ">
+                        <input type="text" name="lname" class="form-control" id="user-lastName" placeholder=" ">
                         <label for="user-lastName">Last Name</label>
                       </div>
                     </div>
@@ -301,7 +301,7 @@
                   <div class="row mb-2">
                     <div class="col">
                       <div class="form-floating Adresse">
-                        <textarea type="email" class="form-control" id="user-Address" placeholder=" " style="max-height: 130px; min-height:100px;"> </textarea>
+                        <textarea type="email" name="address" class="form-control" id="user-Address" placeholder=" " style="max-height: 130px; min-height:100px;"> </textarea>
                         <label for="user-Address">Address</label>
                       </div>
                     </div>                                       
@@ -309,7 +309,7 @@
                   <div class="row mb-2">
                     <div class="col">
                       <div class="form-floating Email">
-                        <input type="phone" class="form-control" id="user-phone" placeholder=" ">
+                        <input type="phone" name="telephone" class="form-control" id="user-phone" placeholder=" ">
                         <label for="user-phone">Phone</label>
                       </div>
                     </div> 
@@ -440,7 +440,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="" method=''>
+            <form action="<c:url value="/MyAccount"/>"  method="post">
               <div class="row">
                 <div class="col-sm-12 col-md-4 img">
                   <div class="product-img">
