@@ -16,11 +16,13 @@ import dao.implementations.DAOFactureImp;
 import modele.Produit;
 import modele.User;
 
-
-@WebServlet("/checkOut")
-public class CheckOut extends HttpServlet {
+/**
+ * Servlet implementation class Facture
+ */
+@WebServlet("/Facture")
+public class Facture extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String VUE="/WEB-INF/Commande.jsp";
+	private static final String VUE="/WEB-INF/Facture.jsp";
 	private static final String SIGNIN_VUE="/WEB-INF/signIn.jsp";
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

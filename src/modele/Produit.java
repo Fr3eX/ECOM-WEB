@@ -23,6 +23,8 @@ public class Produit {
 	@Column(name = "Id_Produit")
 	private Long idProduit ;
 	
+	
+	
 	@Column(name = "Designation")
 	private String  designation;
 	
@@ -69,7 +71,18 @@ public class Produit {
 	@OneToMany(mappedBy="produit")
 	List<Commentaire> commentaires=new ArrayList<Commentaire>();
 	
+	@OneToMany( targetEntity=Commande.class, mappedBy="product" )
+    private List<Commande> commands = new ArrayList<>();
 	
+	
+	public List<Commande> getCommands() {
+		return commands;
+	}
+
+	public void setCommands(List<Commande> commands) {
+		this.commands = commands;
+	}
+
 	public Produit() {
 		super();
 	}

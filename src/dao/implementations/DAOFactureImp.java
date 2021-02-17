@@ -101,7 +101,7 @@ public class DAOFactureImp implements DAOFacture {
 		try {
 			Panier product = this.manager.find(Panier.class, idPanier);
 			product.setQuantite(quantite);
-//			this.manager.update(product); Update the product
+			this.manager.merge(product); 
 		} catch (Exception e) {
 			// TODO: handle exception
 			tr.rollback();
@@ -109,5 +109,26 @@ public class DAOFactureImp implements DAOFacture {
 			
 		}
 	}
+
+	@Override
+	public void addCommande(Commande product) {
+		// TODO Auto-generated method stub
+		EntityTransaction tr = this.manager.getTransaction();
+		tr.begin();
+		try {
+			this.manager.persist(product);
+			tr.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			tr.rollback();
+			throw new DAOException("Cannot Add Commande" + e);
+		}
+		
+		
+	}
+
+
+	
+	
 	
 }

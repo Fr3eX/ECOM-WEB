@@ -264,6 +264,6 @@ $("#addProductImage").on("change", function () {
   uploadProductImage(this);
 });
 
-// $('.addNewProduct').click(function(){
-//   $('#addNewProduct').click()
-// })
+$('.addNewProduct').click(function(){
+   $('#addNewProduct').click()
+ })

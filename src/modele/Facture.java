@@ -1,6 +1,8 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -18,6 +21,7 @@ public class Facture {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "idFacture")
 	private Long idFacture;
 	
 	@ManyToOne
@@ -32,6 +36,19 @@ public class Facture {
 	
 	@Column(name = "Total")
 	private float total;
+	
+	
+	
+	@OneToMany( targetEntity=Commande.class, mappedBy="facture" )
+    private List<Commande> commands = new ArrayList<>();
+
+	public List<Commande> getCommands() {
+		return commands;
+	}
+
+	public void setCommands(List<Commande> commands) {
+		this.commands = commands;
+	}
 
 	public Facture() {
 		super();

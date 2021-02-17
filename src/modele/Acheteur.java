@@ -1,8 +1,12 @@
 package modele;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -24,6 +28,17 @@ public class Acheteur extends User{
 	@OneToOne(targetEntity=Acheteur.class,cascade=CascadeType.ALL)  
 	private Panier panier;
 	
+	@OneToMany( targetEntity=Facture.class, mappedBy="acheteur" )
+    private List<Facture> factures = new ArrayList<>();
+	
+	public List<Facture> getFactures() {
+		return factures;
+	}
+
+	public void setFactures(List<Facture> factures) {
+		this.factures = factures;
+	}
+
 	public Acheteur() {
 		super();
 	}
