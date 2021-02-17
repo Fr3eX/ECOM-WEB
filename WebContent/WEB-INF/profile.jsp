@@ -18,6 +18,7 @@
 
     <!--|| Import style file => home.css ||-->
     <link rel="stylesheet" href="<c:url value="/assets/css/profile.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/assets/css/footer.css"/>" />
 
     <!--|| Import OpenSans font style ||-->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
