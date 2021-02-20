@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -25,7 +26,8 @@ public class Acheteur extends User{
 	@Column(name = "Type_Acheteur")
 	private Integer typeAcheteur;
     
-	@OneToOne(targetEntity=Acheteur.class,cascade=CascadeType.ALL)  
+	@OneToOne
+	@JoinColumn(name= "idPanier")
 	private Panier panier;
 	
 	@OneToMany( targetEntity=Facture.class, mappedBy="acheteur" )

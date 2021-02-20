@@ -93,8 +93,8 @@ public class DAOFactureImp implements DAOFacture {
 		
 	}
 
-	@Override
-	public void updateProductQuantity(Long idPanier, int quantite) {
+
+	/*public void updateProductQuantity(Long idPanier, int quantite) {
 		// TODO Auto-generated method stub
 		EntityTransaction tr = this.manager.getTransaction();
 		tr.begin();
@@ -109,8 +109,8 @@ public class DAOFactureImp implements DAOFacture {
 			
 		}
 	}
-
-	@Override
+*/
+	
 	public void addCommande(Commande product) {
 		// TODO Auto-generated method stub
 		EntityTransaction tr = this.manager.getTransaction();
