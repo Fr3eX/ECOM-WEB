@@ -65,11 +65,11 @@ html, body {
     
 }
 
-.send {
+.sendButton {
     text-align: center;
     width: 200px;
     border-radius: 10px;
-
+    font-size:19px;
 }
 
 .info{
@@ -85,6 +85,11 @@ html, body {
 
 }
 
+.form{
+    display: flex;
+    justify-content:center;
+    flex-direction: column;
+}
 
 .infoB{
     position: relative;

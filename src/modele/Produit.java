@@ -1,6 +1,8 @@
 package modele;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,24 +35,11 @@ public class Produit {
 	@Column(name = "Description")
 	private String description;
 	
-	@Column(name = "Promotion")
-	private Double promotion;
-	
 	@Column(name = "DatePublication")
 	private Date dateInsertion;
-	
-	@Column(name = "Appreciations_Positives")
-	private int appreciationPos;
-	
-	@Column(name = "Appreciations_Negatives")
-	private int appreciationNeg;
-	
+
 	@Column(name = "NombreAchat")
 	private int nombreAchat;
-	
-	@ManyToOne
-	@JoinColumn(name = "Id_Panier")
-	private Panier panier;
 	
 	@ManyToOne
 	@JoinColumn(name = "Categori_Id")
@@ -63,6 +53,23 @@ public class Produit {
 	
 	private String imagePath;
 	
+	@OneToMany(mappedBy="produit")
+	private List<Commentaire> commentaires=new ArrayList<Commentaire>();
+	
+	@OneToMany( targetEntity=Commande.class, mappedBy="product" )
+    private List<Commande> commands = new ArrayList<>();
+	
+	
+	public List<Commande> getCommands() {
+		return commands;
+	}
+
+	public void setCommands(List<Commande> commands) {
+		this.commands = commands;
+	}
+
+
+
 	public Produit() {
 		super();
 	}
@@ -107,13 +114,6 @@ public class Produit {
 		this.description = description;
 	}
 
-	public Double getPromotion() {
-		return promotion;
-	}
-
-	public void setPromotion(Double promotion) {
-		this.promotion = promotion;
-	}
 
 	public Date getDateInsertion() {
 		return dateInsertion;
@@ -123,21 +123,6 @@ public class Produit {
 		this.dateInsertion = dateInsertion;
 	}
 
-	public int getAppreciationPos() {
-		return appreciationPos;
-	}
-
-	public void setAppreciationPos(int appreciationPos) {
-		this.appreciationPos = appreciationPos;
-	}
-
-	public int getAppreciationNeg() {
-		return appreciationNeg;
-	}
-
-	public void setAppreciationNeg(int appreciationNeg) {
-		this.appreciationNeg = appreciationNeg;
-	}
 
 	public int getNombreAchat() {
 		return nombreAchat;
@@ -147,13 +132,6 @@ public class Produit {
 		this.nombreAchat = nombreAchat;
 	}
 
-	public Panier getPanier() {
-		return panier;
-	}
-
-	public void setPanier(Panier panier) {
-		this.panier = panier;
-	}
 
 	public Categorie getCategorie() {
 		return categorie;
@@ -186,6 +164,18 @@ public class Produit {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+
+	public List<Commentaire> getCommentaires() {
+		return commentaires;
+	}
+
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+
+	
+
+
 	
 	
 }

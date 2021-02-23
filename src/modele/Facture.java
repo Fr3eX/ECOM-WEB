@@ -2,46 +2,54 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import modele.Commande;
 
 @Entity
-//@Table(name = "T_FACTURE")
+@Table(name = "T_FACTURES")
 public class Facture {
-
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id_Facture")
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "idFacture")
 	private Long idFacture;
 	
-	private Date dateFacture;
+	@ManyToOne
+	@JoinColumn(name = "ID_ACHETEUR")
+	private Acheteur acheteur;
 	
-	private boolean etatFacture;
+	@Column(name = "DateFacturation")
+	private Date dateFacturation;
 	
-	// @OneToMany(targetEntity=Commande.class, mappedBy="Facture", cascade=CascadeType.ALL)
-	@OneToMany(mappedBy = "factures")
-	private List<Commande> commandes = new ArrayList<>();
+	@Column(name = "IdCard")
+	private String idCard;
+	
+	@Column(name = "Total")
+	private float total;
 	
 	
-	public Facture(Long idFacture, Date dateFacture, boolean etatFacture, List<Commande> commandes) {
-		super();
-		this.idFacture = idFacture;
-		this.dateFacture = dateFacture;
-		this.etatFacture = etatFacture;
-		this.commandes = commandes;
+	
+	@OneToMany( targetEntity=Commande.class, mappedBy="facture" )
+    private List<Commande> commands = new ArrayList<>();
+
+	public List<Commande> getCommands() {
+		return commands;
 	}
-	
+
+	public void setCommands(List<Commande> commands) {
+		this.commands = commands;
+	}
+
 	public Facture() {
 		super();
 	}
@@ -53,27 +61,39 @@ public class Facture {
 	public void setIdFacture(Long idFacture) {
 		this.idFacture = idFacture;
 	}
-	
-	public Date getDateFacture() {
-		return dateFacture;
+
+	public Acheteur getAcheteur() {
+		return acheteur;
 	}
 
-	public void setDateFacture(Date dateFacture) {
-		this.dateFacture = dateFacture;
-	}
-	
-	public boolean getEtatFacture() {
-		return etatFacture;
+	public void setAcheteur(Acheteur acheteur) {
+		this.acheteur = acheteur;
 	}
 
-	public void setEtatFacture(boolean etatFacture) {
-		this.etatFacture = etatFacture;
+	public Date getDateFacturation() {
+		return dateFacturation;
+	}
+
+	public void setDateFacturation(Date dateFacturation) {
+		this.dateFacturation = dateFacturation;
+	}
+
+	public String getIdCard() {
+		return idCard;
+	}
+
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
+	}
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
 	}
 	
-	public void addCommande(Commande cmd){
-		this.commandes.add(cmd);
-		cmd.setFactures(this);
-	}
-	 
+	
 	
 }
