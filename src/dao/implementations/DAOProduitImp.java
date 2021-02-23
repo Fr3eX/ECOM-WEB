@@ -111,7 +111,6 @@ public class DAOProduitImp implements DAOProduit{
 	}
 	
 	public Produit modifierProduct(Produit prod) throws DAOException {
-		// TODO Auto-generated method stub
 		Produit produit=null;
 		EntityTransaction tr=this.manager.getTransaction();
 		tr.begin();
@@ -128,6 +127,32 @@ public class DAOProduitImp implements DAOProduit{
 		
 		return produit;
 	}
+	public int updateProduct(Long idProduit,String designation,int quantite,String description,Categorie categorie,boolean isNew) {
+		EntityTransaction tr=this.manager.getTransaction();
+		int value=0;
+		Query query;
+		tr.begin();
+		try
+		{
+			query = this.manager.createQuery("update Produit p set p.designation = ?1 , p.quantite = ?2 , p.description = ?3 , p.categorie=?4 , p.newProduct = ?5 where p.idProduit = ?6 ");
+			query.setParameter(1, designation);
+			query.setParameter(2, quantite);
+			query.setParameter(3, description);
+			query.setParameter(4, categorie);
+			query.setParameter(5, isNew);
+			query.setParameter(6, idProduit);
+			value = query.executeUpdate();
+			tr.commit();
+			
+		}
+		catch (Exception e) {
+			tr.rollback();
+			throw new DAOException("Cannot alter produit " + e);
+		}
+		return value;
+		
+	}
+	
 	
 	   public void supprimerProduit(Long idProduit) {
 			EntityTransaction tr=this.manager.getTransaction();
@@ -268,5 +293,87 @@ public class DAOProduitImp implements DAOProduit{
 			
 			return list;
 	   }
+	   
+	   public Panier getPanier(Acheteur acheteur){
+			List<Panier> list = null;
+			EntityTransaction tr=this.manager.getTransaction();
+			TypedQuery<Panier> query;
+			tr.begin();
+			try
+			{
+			    query = this.manager.createQuery("SELECT p FROM Panier p WHERE p.acheteur=:acheteur",Panier.class);
+			    query.setParameter("acheteur", acheteur);
+			    list = query.getResultList();
+				tr.commit();
+			}
+			catch (Exception e) {
+				tr.rollback();
+				throw new DAOException("Cannot Load products " + e);
+			}
+			
+			return list.get(0);
+	   }
+		public Acheteur loadAcheteur(Long id) throws DAOException {
+			// TODO Auto-generated method stub
+			Acheteur acheteur=null;
+			EntityTransaction tr=this.manager.getTransaction();
+			tr.begin();
+			try
+			{
+				acheteur=this.manager.find(Acheteur.class, id);
+				tr.commit();
+			}
+			catch (Exception e) {
+				tr.rollback();
+				throw new DAOException("Cannot Load seller " + e);
+			}
+			
+			return acheteur;
+		}
+		
+		   public List<Produit> getProduitsFromPanier(Acheteur acheteur){
+			   Panier panier = this.getPanier(acheteur);
+				List<Produit> list = null;
+				EntityTransaction tr=this.manager.getTransaction();
+				TypedQuery<Produit> query;
+				tr.begin();
+				try
+				{
+				    query = this.manager.createQuery("SELECT p FROM Produit p WHERE p.panier=:panier",Produit.class);
+				    query.setParameter("panier", panier);
+				    list = query.getResultList();
+					tr.commit();
+				}
+				catch (Exception e) {
+					tr.rollback();
+					throw new DAOException("Cannot Load products " + e);
+				}
+				
+				return list;
+		   }
+		   
+			public void addProductToPanier(Long idProduit,Acheteur acheteur) throws DAOException {
+
+				EntityTransaction tr=this.manager.getTransaction();
+				Query query;
+				Panier panier = this.getPanier(acheteur);
+				tr.begin();
+				try
+				{
+				    query = this.manager.createQuery("update Produit p set p.panier=:panier WHERE p.idProduit=:idProduit");
+				    query.setParameter("panier", panier);
+				    query.setParameter("idProduit", idProduit);
+				    query.executeUpdate();
+					tr.commit();
+				}
+				catch (Exception e) {
+					tr.rollback();
+					throw new DAOException("Cannot Add produit" + e);
+				}
+			}
+			
+		
+	   
+	   
 	   
 }

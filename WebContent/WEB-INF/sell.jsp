@@ -33,6 +33,25 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
       rel="stylesheet"
     />
+         <script>
+          /* Cette fonction permet d'afficher une vignette pour chaque image sélectionnée */
+            function readFilesAndDisplayPreview(files) {
+                let imageList = document.querySelector('#list'); 
+                imageList.innerHTML = "";
+                
+                for ( let file of files ) {
+                    let reader = new FileReader();
+                    
+                    reader.addEventListener( "load", function( event ) {
+                        let span = document.createElement('span');
+                        span.innerHTML = '<img height="60" src="' + event.target.result + '" />';
+                        imageList.appendChild( span );
+                    });
+
+                    reader.readAsDataURL( file );
+                }
+            }
+        </script>
   </head>
   <body>
   
@@ -56,9 +75,9 @@
                <div class="card m-1">
               <div class="card-header edit-cart py-0">
                 <div>
-                  <label for="cofeeMaker1WLEdit">Edit</label>
+                  <label for="WLDelete<c:out value="${produit.idProduit }"></c:out>">Edit</label>
                   <button
-                    id="cofeeMaker1WLEdit"
+                    id="WLDelete<c:out value="${produit.idProduit }"></c:out>"
                     type="button"
                     class="btn btn-link editProduct"
                     data-bs-toggle="modal"
@@ -69,9 +88,9 @@
                 </div>
                 <div>
 
-                  <label for="cofeeMaker<c:out value="${produit.idProduit }"></c:out>WLDelete">Delete</label>
+                  <label for="WLDelete<c:out value="${produit.idProduit }"></c:out>">Delete</label>
                   <button
-                    id="cofeeMaker<c:out value="${produit.idProduit }"></c:out>WLDelete"
+                    id="WLDelete<c:out value="${produit.idProduit }"></c:out>"
                     type="button"
                     class="btn btn-link delete"
                     data-bs-toggle="modal"
@@ -82,18 +101,22 @@
                 </div>
               </div>
               <!-- change id and categorie to be dynamique -->
-              <div class="card-body py-0 " id=<c:out value="${produit.idProduit }"></c:out> category = 'Coffe maker'>
+              <div class="card-body py-0 " id=<c:out value="${produit.idProduit }"></c:out> category =<c:out value="${produit.categorie.getNomCategorie() }"></c:out> >
                 <div class="title" ><c:out value="${produit.getDesignation() }"></c:out></div>
                 <div class="productImage">
                   <img
                     src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
                     alt="cofee maker"
-                    
                     class="img-thumbnail"
                   />
-                 
                 </div>
                 <div class="productPrice"><span><c:out value="${produit.getPrix() }"></c:out></span> DH</div>
+                <div class="productDescription d-none">
+                 	<p><c:out value="${produit.getDescription() }"></c:out></p>
+                </div>
+                <div class="productQuantity d-none">
+                 	<p><c:out value="${produit.getQuantite() }"></c:out></p>
+                </div>
               </div>
               <div class="card-footer py-0">
                 <div>
@@ -334,10 +357,12 @@
                     </ul>
                   </div>
                   <div class="description">
-                    <!-- Description -->
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Harum, odit? Quos voluptates enim ducimus delectus sapiente
-                    animi aut, fugiat veritatis!
+               		<h4>
+                    description
+                    </h4>
+                    <p class="mb-2 text-muted small">
+                      test
+                    </p>
                   </div>
                   <div class="product-info">
                     <table class="table table-sm table-borderless mb-0">
@@ -348,8 +373,6 @@
                           </th>
                           <td class="price">
                             <strong>
-                              <!-- Price -->
-                              <!-- 12000.00 -->
                             </strong>
                             DH
                           </td>
@@ -378,14 +401,14 @@
                   <hr />
                   <!-- Quantity selector -->
                   <div class="input-group mb-3 quantity-selector">
-                    <div class="form-floating title">
+                    <div class="form-floating quantity">
                       <input
                         type="number"
                         class="form-control"
                         id="quantityRest"
                         placeholder=" "
                         disabled
-                        value="1"
+                        value=""
                         min="1"
                       />
                       <label for="quantityRest">Quantity</label>
@@ -419,7 +442,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form action="" method="">
+            <form action="UpdateProduct" method="post">
               <div class="row">
                 <div class="col-sm-12 col-md-4 img">
                   <div class="product-img">
@@ -439,6 +462,7 @@
                           type="text"
                           class="form-control"
                           id="product-title"
+                          name="designation"
                           placeholder=" "
                         />
                         <label for="product-title">Title</label>
@@ -453,11 +477,11 @@
                           type="text"
                           class="form-control"
                           id="product-description"
+                          name = "description"
                           placeholder=" "
+                          value = ""
                           style="max-height: 130px; min-height: 100px"
-                        >
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos voluptates enim ducimus delectus sapiente animi aut, fugiat veritatis!
-                        </textarea>
+                        ></textarea>
                         <label for="product-description">Description</label>
                       </div>
                     </div>
@@ -469,6 +493,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
                         <select
                           class="form-select"
                           id="edit-Category"
+                          name="categorie"
                           aria-label="Category"
                           style="height: 60px"
                         >
@@ -504,6 +529,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
                           type="number"
                           class="form-control"
                           id="product-Quantity"
+                          name="quantite"
                           placeholder=" "
                           min="1"
                           value="1"
@@ -519,6 +545,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
                           type="number"
                           class="form-control"
                           id="product-Price"
+                          name="prix"
                           placeholder=" "
                           min="0"
                           step="0.1"
@@ -540,6 +567,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
                         <label for="product-Model">Model</label>
                       </div>
                     </div>
+		            <input name="productIdUpdate" value="" id="productIdUpdate" class="d-none"/>
                   </div>
                 </div>
               </div>
@@ -548,7 +576,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
                 class="d-none"
                 id="saveProductChanges"
               ></button>
-            </form>
+
           </div>
           <div class="modal-footer">
             <button
@@ -561,6 +589,7 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
             <button type="button" class="btn btn-primary" id="saveChanges">
               Save changes
             </button>
+            </form>
           </div>
         </div>
       </div>
@@ -633,16 +662,36 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, odit? Quos volup
             ></button>
           </div>
           <div class="modal-body">
-            <form action="addProduct" method="post">
+            <form action="addProduct" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-sm-12 col-md-4 img">
                   <div class="product-img">
-                    <img class="img-thumbnail" src="" alt="profile image" />
-                    <div class="file btn btn-lg">
-                      Upload photo
-                      <input type="file" name="photo" id="addProductImage" />
-                    </div>
+                  	<!--  
+	                    Fichiers sélectionnés : 
+			            <input type="file" name="multiPartServlet" accept="image/*" multiple
+			                   onchange="readFilesAndDisplayPreview(this.files);" /> <br/>
+			            <input type="submit" value="Upload" /> <br/>
+		                <div id="list"></div>  
+		                -->   
+	                    <img class="img-thumbnail" src="" alt="profile image" />
+	                    <div class="file btn btn-lg">
+	                      Upload photo
+	                        <input type="file" name="multiPartServlet" accept="image/*" multiple
+		                   onchange="readFilesAndDisplayPreview(this.files);" id="productImage" name="productImage"/> <br/> 
+	                    </div>
+	                    <input type="submit" value="Upload" /> <br/> 
+	                    <div id="list"></div> 
                   </div>
+                  <!--  
+                <form method="post" action="upload" enctype="multipart/form-data">
+		            Fichiers sélectionnés : 
+		            <input type="file" name="multiPartServlet" accept="image/*" multiple
+		                   onchange="readFilesAndDisplayPreview(this.files);" /> <br/>
+		            <input type="submit" value="Upload" /> <br/>        
+		            
+		            <div id="list"></div>   
+		        </form>
+		        -->
                 </div>
                 <div class="col-sm-12 col-md-8 product-content">
                   <div class="row mb-2">

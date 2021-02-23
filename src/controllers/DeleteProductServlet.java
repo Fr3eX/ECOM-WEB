@@ -10,11 +10,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.implementations.DAOProduitImp;
 import metier.forms.AddProductForm;
 import modele.Categorie;
 import modele.Produit;
+import modele.User;
 
 /**
  * Servlet implementation class DeleteProductServlet
@@ -26,14 +28,15 @@ public class DeleteProductServlet extends HttpServlet {
 	private static final String MESSAGE="probleme lors de l'ajout du produit";
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session=request.getSession();
+		User user = (User)session.getAttribute("USER");
 		EntityManagerFactory factory=Persistence.createEntityManagerFactory("FIRST_UNIT");
 		
 		DAOProduitImp daoProduit = new DAOProduitImp(factory);
 		Long i = Long.parseLong(request.getParameter("productId"));
 		System.out.println("**********************"+i+"*****************************");
 		daoProduit.supprimerProduit(i);
-		List<Produit> listeProduits = daoProduit.getProduitsParVendeure(new Long(1));
+		List<Produit> listeProduits = daoProduit.getProduitsParVendeure(user.getIdUser());
 		request.setAttribute("listeProduits", listeProduits);
 		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
 
