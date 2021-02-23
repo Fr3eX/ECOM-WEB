@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
 %>
-
-<%@page import="modele.Produit"%>
-<%@page import="modele.Panier"%>
-<%@page import="modele.Prod_Panier"%>
-    <%@page import="java.util.ArrayList"%>
-   <%@page import="java.util.*"%>
-   <%@page import="java.io.IOException"%>
-   <%@page import="javax.servlet.*"%>
-   <%@page import="javax.servlet.Servlet"%>
 <c:if test="${!empty sessionScope.USER}" var="exist"/>
 
     <div class="header">
@@ -93,9 +84,8 @@
               aria-expanded="false"
             >
               Categories
-            </a>  
-            
-	    <ul class="dropdown-menu" aria-labelledby="categories">
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categories">
               <li><a class="dropdown-item" href="#">Refrigerator</a></li>
               <li><a class="dropdown-item" href="#">Freezer</a></li>
               <li><a class="dropdown-item" href="#">Oven</a></li>
@@ -249,115 +239,11 @@
                 </div>
                 <hr class="cart-line" />
                 <div class="cart-body">
-       Panier PANIER=${sessionScope.user_panier.attribut}
-     <%  List<Prod_Panier> listProduit = PANIER.getProdPaniers; %>
-           <%int size = listProduit.size(); %>
-        <%if(size != 0){ %>
-
-        <c:forEach var="produit" items="${listProduit}">
                   <ul class="list-items" id="list-times">
-                  
-                  
                     <!-- Cart items list  -->
-                    <li class="cart-product">
-            
-                      <div class="product idProduct4" <c:out value="${produit.getIdProduit() }"></c:out>>
-                        <div class="row">
-                          <div class="col">
-           
-                            <div class="product-title" >
-                             <ul class="product-title">
-                             
-				<c:forEach var="item" items="${listProduit}" >
-					<li><a class="product-title" href="#"><c:out value="${item.designation}" /></a></li>
-				</c:forEach>
-              <li><a class="product-title" href="#">Lave-vaisselle</a></li>
-              <li><a class="product-title" href="#">Congélateur</a></li>
-              <li><a class="product-title" href="#">Chauffe-eau électrique</a></li>
-              <li><a class="product-title" href="#">Four micro-ondes</a></li>
-              <li><a class="product-title" href="#">Hotte aspirante</a></li>
-              <li><a class="product-title" href="#">lave-linge</a></li>
-              <li><a class="product-title" href="#">Plaque de cuisson</a></li>
-              <li><a class="product-title" href="#">Sèche-linge</a></li>
-              <li><a class="product-title" href="#">cuisinière</a></li>
-            </ul>     
-                              <!-- Severin Kaffeevollautomat KV 8090 -->
-                            </div>
-                            <div class="product-price">
-                                  <ul class="product-price">
-				<c:forEach var="item" items="${listProduit}" >
-					<li><a class="product-price" href="#"><c:out value="${item.prix}" /></a></li>
-				</c:forEach>
-              <li><a class="product-price" href="#">2999</a></li>
-              <li><a class="product-price" href="#">1899</a></li>
-              <li><a class="product-price" href="#">1199</a></li>
-              <li><a class="product-price" href="#">1599</a></li>
-              <li><a class="product-price" href="#">2699</a></li>
-              <li><a class="product-price" href="#">13000</a></li>
-              <li><a class="product-price" href="#">4999</a></li>
-              <li><a class="product-price" href="#">4599</a></li>
-              <li><a class="product-price" href="#">9000</a></li>
-               </ul>   
-                            
-                              <div class="changeQuntite">     
-                           <ul class="changeQuntite">
-				<c:forEach var="item" items="${listProduit}" >
-					<li><a class="changeQuntite" href="#"><c:out value="${item.prix}" /></a></li>
-				</c:forEach>
-              <li><a class="changeQuntite" href="#">2999</a></li>
-              <li><a class="changeQuntite" href="#">1899</a></li>
-              <li><a class="changeQuntite" href="#">1199</a></li>
-              <li><a class="changeQuntite" href="#">1599</a></li>
-              <li><a class="changeQuntite" href="#">2699</a></li>
-              <li><a class="changeQuntite" href="#">13000</a></li>
-              <li><a class="changeQuntite" href="#">4999</a></li>
-              <li><a class="changeQuntite" href="#">4599</a></li>
-              <li><a class="changeQuntite" href="#">9000</a></li>
-               </ul>   
-                    
-                                                      
-                                <span class="quantity m-1">1</span>
-                                x <span class="price m-2">10000.00</span>                                
-                              </div>
-                              <div class="quantitybtn my-2">
-                                <div class="add btn btn-outline-primary mx-2">+</div>
-                                <div class="remove btn btn-outline-secondary mx-2">-</div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col">
-                          
-                            <div class="product-image">      
-                              <ul class="product-image">
-				<c:forEach var="item" items="${listProduit}" >
-					<li><a class="product-image" href="#"><c:out value="${item.imagePath}" /></a></li>
-				</c:forEach>
-              <li><a class="product-image" href="#">AAAAA</a></li>
-              <li><a class="product-image" href="#">BBBBBB</a></li>
-              <li><a class="product-image" href="#">eeeeeee</a></li>
-              <li><a class="product-image" href="#">CCCC</a></li>
-              <li><a class="product-image" href="#">fffff</a></li>
-              <li><a class="product-image" href="#">rrrrr</a></li>
-              <li><a class="product-image" href="#">hhhhh</a></li>
-              <li><a class="product-image" href="#">ssssss</a></li>
-              <li><a class="product-image" href="#">aaaagv</a></li>
-               </ul>   
-                            
-                              <!--  <img
-                                src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
-                                width="80%"
-                                alt=""
-                              />-->
-                              <button type="button" class="btn-close btn-outline-secondary"></button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
                   </ul>
                 </div>
-               </c:forEach>
-            <% }%>
+
                 <div class="cart-footer">
                   <hr class="cart-line" />
                   <div class="total">

@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.implementations.DAOPanierImp;
 import dao.implementations.DAOUserImp;
 import dao.interfaces.DAOUser;
 import metier.forms.SignInForm;
-import modele.Panier;
 import modele.User;
 
 
@@ -74,18 +72,14 @@ public class SignInServlet extends HttpServlet {
 		
 		DAOUser dao_user=new DAOUserImp(factory);
 		SignInForm form=new SignInForm(dao_user);
-		DAOPanierImp PA =new DAOPanierImp(factory);
+		
 		User user=form.SignIn(request);
 		
 		if(form.getErrors().isEmpty())
 		{
 				System.out.println(user.getNom());
 				session.setAttribute(USER_S_SCOPE_ATTRIBUTE, user);
-				
-				Panier user_panier =PA.loadPanierParAche(user.getIdUser());
-				session.setAttribute("user_panier",user_panier);
 				response.sendRedirect(request.getContextPath() + HOME_VUE);
-				
 				return;
 		}
 		else

@@ -118,12 +118,12 @@ public class DAOUserImp implements DAOUser{
 		tr.begin();
 		try
 		{
-			this.manager.merge(user);
+			this.manager.persist(user);
 			tr.commit();
 		}
 		catch (Exception e) {
 			tr.rollback();
-			throw new DAOException("Cannot update User",e);
+			throw new DAOException("Cannot del User",e);
 		}
 		
 	}
@@ -161,9 +161,5 @@ public class DAOUserImp implements DAOUser{
 	
 	}
 
-	public void close()
-	{
-		this.manager.flush();
-		this.manager.close();
-	}
+
 }

@@ -18,5 +18,3 @@ $(".btn1").on("click", function () {
       $('.signin').click();
   }
 });
-
-

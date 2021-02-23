@@ -1,68 +1,60 @@
 package modele;
 
-import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@Entity @Table(name = "T_COMMANDE")
+public class Commande {
 
-@Entity
-@Table(name="T_COMMANDES")
-public class Commande implements Serializable {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Id_Commande")
-	private Long idCommande ;
 	
-	@ManyToOne
-	@JoinColumn(name = "idFacture")
-	private Facture facture;
+	private Long idCommande;
+	private int quantiteCom;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "idProduit") 
-	private Produit product;
-	
-	@Column(name="Quantity")
-	private int quantity;
+	 @ManyToOne @JoinColumn(name="idFacture", nullable=false)
+	private Facture factures;
+
+	public Commande(Long idCommande, int quantiteCom, Facture factures) {
+		super();
+		this.idCommande = idCommande;
+		this.quantiteCom = quantiteCom;
+		this.factures = factures;
+	}
 
 	public Commande() {
 		super();
 	}
 
-	public Facture getFacture() {
-		return facture;
+	public Long getIdCommande() {
+		return idCommande;
 	}
 
-	public void setFacture(Facture facture) {
-		this.facture = facture;
+	public void setIdCommande(Long idCommande) {
+		this.idCommande = idCommande;
 	}
 
-	public Produit getProduct() {
-		return product;
+	public int getQuantiteCom() {
+		return quantiteCom;
 	}
 
-	public void setProduct(Produit product) {
-		this.product = product;
+	public void setQuantiteCom(int quantiteCom) {
+		this.quantiteCom = quantiteCom;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public Facture getFactures() {
+		return factures;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setFactures(Facture factures) {
+		this.factures = factures;
 	}
-
-	
 	
 	
 }

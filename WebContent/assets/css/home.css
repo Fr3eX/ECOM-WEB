@@ -317,7 +317,7 @@ nav {
     justify-content: flex-start;
 }
 
-.list-items .buttonClose {
+.list-items .btn-close {
     border-radius: 50%;
     position: absolute;
     top: 0;
@@ -1005,12 +1005,12 @@ footer .container .row {
     justify-content: flex-start;
 }
 
-/* .list-items .buttonClose {
+.list-items .btn-close {
     border-radius: 50%;
     position: absolute;
     top: 0;
     right: 0;
-} */
+}
 
 .list-items {
     overflow: scroll;

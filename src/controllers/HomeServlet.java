@@ -28,7 +28,6 @@ public class HomeServlet extends HttpServlet {
     }
 	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
     	DAOCategorieImp dao = new DAOCategorieImp() ;
     	List<Categorie> listCat =  dao.listCategorie() ;
     	
@@ -38,5 +37,8 @@ public class HomeServlet extends HttpServlet {
     }
 
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
 
 }

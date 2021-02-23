@@ -18,7 +18,6 @@
 
     <!--|| Import style file => home.css ||-->
     <link rel="stylesheet" href="<c:url value="/assets/css/profile.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/assets/css/footer.css"/>" />
 
     <!--|| Import OpenSans font style ||-->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -33,7 +32,10 @@
     <c:import url="navBar.jsp"></c:import>
 
     <!-- Body -->
-   
+    
+
+
+
       <!-- user Profile -->
       <div class="container profile-container">
           <form action="" method="">
@@ -159,6 +161,62 @@
               </div>
             </div>
           </form>
+          
+          <hr>
+          <div class="">
+            <div class="ownProducts">
+              <h4 class="myProducts">My products</h4>
+            </div>
+            <div class="row">
+              <div class="col-4 productListes">
+                <div class="card m-1">
+                  
+                  <div class="card-header edit-cart py-0">
+                    <div>
+                      <label for="cofeeMaker1WLEdit">Edit</label>
+                      <button id="cofeeMaker1WLEdit" type="button" class="btn btn-link editProduct" data-bs-toggle="modal" data-bs-target="#editProductModal">
+                        <i class="fas fa-pen"></i>
+                      </button>
+                    </div>
+                    <div>
+                      <label for="cofeeMaker1WLDelete">Delete</label>
+                      <button id="cofeeMaker1WLDelete" type="button" class="btn btn-link delete" data-bs-toggle="modal" data-bs-target="#confirmeDeleteModal">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="card-body py-0 " id="idProduct4" category = 'Coffe maker'>
+                    <div class="title" >Severin Kaffeevollautomat KV 8090</div>
+                    <div class="productImage">
+                      <img
+                      src="./assets/images/home/categories-main/Severin Kaffeevollautomat KV 8090.jpg"
+                      alt="cofee maker"
+                      width="204"
+                      height="204"
+                      />
+                      <button type="button" class="btn">
+                        <div class="productColor"></div>
+                      </button>
+                    </div>
+                    <div class="productPrice"><span>10000.00</span> DH</div>
+                  </div>
+                  <div class="card-footer py-0">
+                    <div>      
+                      <button type="button" class="btn shadow-sm rounded bg-white detail" data-bs-toggle="modal" data-bs-target="#productDetail">
+                        <Span >Details</Span><i class="far fa-eye mx-1"></i>
+                      </button>
+                    </div>
+      
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 addProduct">
+                  <button type="button" class="btn box bg-secondary text-white" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                    <i class="fas fa-plus"></i>
+                  </button>
+              </div>
+            </div>
+          </div>
       </div>
 
 
@@ -206,7 +264,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="<c:url value="/MyAccount"/>" method="post" enctype="multipart/form-data">
+            <form action="" method=''>
               <div class="row">
                 <div class="col-sm-12 col-md-4 img">
                   <div class="profile-img">
@@ -221,13 +279,13 @@
                   <div class="row mb-2">
                     <div class="col-6">
                       <div class="form-floating Fname">
-                        <input type="text" name="fname" class="form-control" id="user-firstName" placeholder=" ">
+                        <input type="text" class="form-control" id="user-firstName" placeholder=" ">
                         <label for="user-firstName">First Name</label>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-floating Lname">
-                        <input type="text" name="lname" class="form-control" id="user-lastName" placeholder=" ">
+                        <input type="text" class="form-control" id="user-lastName" placeholder=" ">
                         <label for="user-lastName">Last Name</label>
                       </div>
                     </div>
@@ -243,7 +301,7 @@
                   <div class="row mb-2">
                     <div class="col">
                       <div class="form-floating Adresse">
-                        <textarea type="email" name="address" class="form-control" id="user-Address" placeholder=" " style="max-height: 130px; min-height:100px;"> </textarea>
+                        <textarea type="email" class="form-control" id="user-Address" placeholder=" " style="max-height: 130px; min-height:100px;"> </textarea>
                         <label for="user-Address">Address</label>
                       </div>
                     </div>                                       
@@ -251,7 +309,7 @@
                   <div class="row mb-2">
                     <div class="col">
                       <div class="form-floating Email">
-                        <input type="phone" name="telephone" class="form-control" id="user-phone" placeholder=" ">
+                        <input type="phone" class="form-control" id="user-phone" placeholder=" ">
                         <label for="user-phone">Phone</label>
                       </div>
                     </div> 
@@ -382,7 +440,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="<c:url value="/MyAccount"/>"  method="post">
+            <form action="" method=''>
               <div class="row">
                 <div class="col-sm-12 col-md-4 img">
                   <div class="product-img">

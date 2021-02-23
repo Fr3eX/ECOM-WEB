@@ -22,9 +22,11 @@ public class ServletListener implements ServletContextListener {
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
-
-		EntityManagerFactory factory=Persistence.createEntityManagerFactory(UNIT_NAME);	
-		ServletContext context=sce.getServletContext();	
+	
+		EntityManagerFactory factory=Persistence.createEntityManagerFactory(UNIT_NAME);
+		
+		ServletContext context=sce.getServletContext();
+		
 		context.setAttribute(FACTORY_APPATTRIBUTE, factory);
 	
 	}

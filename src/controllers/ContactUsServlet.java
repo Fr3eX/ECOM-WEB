@@ -19,7 +19,7 @@ public class ContactUsServlet extends HttpServlet {
 	private static final String FORM_R_ATTRIBUTE="FORM";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		this.getServletContext().getRequestDispatcher(C_US_VUE).forward(request, response);
 	}
 

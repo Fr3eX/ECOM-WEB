@@ -2,57 +2,35 @@ package modele;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Entity 
-@Table(name = "T_COMMENTAIRE")
+@Entity @Table(name = "T_COMMENTAIRE")
 public class Commentaire {
 	
-	
-	@Id
-	@Column(name = "ID_COMMENT")
-	@GeneratedValue( strategy=GenerationType.IDENTITY )
+	@Id @GeneratedValue( strategy=GenerationType.IDENTITY )
 	private Long idCommentaire;
 	
-	@Column(name = "COMMENT_TEXT")
-	private String commentaire;
-	
-	@Column(name="DATE_COMMENT")
+	private String Commentaire;
 	private Date dateCommentaire;
+	private String derniereModification;
 	
-	
-	
-	@OneToOne
-	@JoinColumn(name = "ID_USER", referencedColumnName = "idUser")
-	User user;
-	
-	@OneToOne
-	@JoinColumn(name = "ID_PRODUCT", referencedColumnName = "Id_Produit")
-	Produit produit;
-	
-	@Column(name = "LAST_DATE_COMMENT_EDIT")
-	private Date derniereModification;
-	
-	
-
-	public Commentaire() {
+	public Commentaire(Long idCommentaire, String commentaire, Date dateCommentaire, String derniereModification) {
 		super();
-	}
-	
-	public Commentaire(String commentaire, Date dateCommentaire, Date derniereModification) {
-		super();
-		
-		this.commentaire = commentaire;
+		this.idCommentaire = idCommentaire;
+		Commentaire = commentaire;
 		this.dateCommentaire = dateCommentaire;
 		this.derniereModification = derniereModification;
 	}
+
+	
+	public Commentaire() {
+		super();
+	}
+
 
 	public Long getIdCommentaire() {
 		return idCommentaire;
@@ -63,11 +41,11 @@ public class Commentaire {
 	}
 
 	public String getCommentaire() {
-		return commentaire;
+		return Commentaire;
 	}
 
 	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
+		Commentaire = commentaire;
 	}
 
 	public Date getDateCommentaire() {
@@ -78,37 +56,14 @@ public class Commentaire {
 		this.dateCommentaire = dateCommentaire;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Produit getProduit() {
-		return produit;
-	}
-
-	public void setProduit(Produit produit) {
-		this.produit = produit;
-	}
-
-	public Date getDerniereModification() {
+	public String getDerniereModification() {
 		return derniereModification;
 	}
 
-	public void setDerniereModification(Date derniereModification) {
+	public void setDerniereModification(String derniereModification) {
 		this.derniereModification = derniereModification;
 	}
-
 	
-	
-	
-	
-	
-
-
 	
 
 }
