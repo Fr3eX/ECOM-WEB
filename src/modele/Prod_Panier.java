@@ -37,6 +37,13 @@ public class Prod_Panier {
 	}
 	
 
+	public Prod_Panier(int quantite, Double prix) {
+		super();
+		this.quantite = quantite;
+		this.prix = prix;
+	}
+
+
 	public Long getIde() {
 		return ide;
 	}
@@ -70,6 +77,12 @@ public class Prod_Panier {
 
 	public void setPanier(Panier panier) {
 		this.panier = panier;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Prod_Panier [ide=" + ide + ", quantite=" + quantite + "]";
 	}
 	
 	

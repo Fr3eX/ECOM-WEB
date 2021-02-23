@@ -16,6 +16,8 @@ public interface DAOPanier {
 	
 	public void AjouterDansPanier(Prod_Panier produitP);
 	
+	//public void addProd_Panier(int quantite,Long idProduit,Long idPanier);
+	
 	public void modifierDansPanier(Prod_Panier produitP, int quantite);
 	
 	public void supprimerDuPanier(Prod_Panier produitP);
@@ -29,5 +31,15 @@ public interface DAOPanier {
 	public Panier loadPanier(Long idPanier);
 	
 	public Panier loadPanierParAche(Long idAcheteur);
+
+	void addProd_Panier(int quantite, Long idProduit, Long idPanier);
+
+	Produit getProduitById(Long idProduit);
+
+	Prod_Panier verifier(Panier PAN, Produit PD);
+
+	Double calculerTotale(Long idPanier);
+	
+	
 
 }
