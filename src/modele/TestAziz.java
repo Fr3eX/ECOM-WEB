@@ -15,18 +15,10 @@ public class TestAziz {
 		// TODO Auto-generated method stub
 		EntityManagerFactory fac=Persistence.createEntityManagerFactory("FIRST_UNIT");
 		DAOProduitImp pm = new DAOProduitImp(fac);
-
-		Produit produit = new Produit();
-		/*
-		pm.addProductToPanier(new Long(23), acheteur);
 		
-		/*
-		 * Produit produit=pm.loadProduct(new Long(23));
-		System.out.println(produit);
-		 
-		Panier panier = pm.getPanier(acheteur);
-		List<Produit> list = pm.getProduitsFromPanier(panier);
-		System.out.println(list.size());
+		List<Produit> list = pm.getProduits();
+		
+		System.out.println(list.get(0).getDesignation());
 		/*
 		Produit produit = new Produit();
 		produit.setQuantite(12);

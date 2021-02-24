@@ -170,13 +170,20 @@ $(".editProduct").click(function (event) {
   console.log("Selected product id : " + idProduct);
   selectedIdForDetail = idProduct;
 
-  var title = $("#" + idProduct).find(".title").text();
+  var title = $("#" + idProduct)
+    .find(".title")
+    .text();
   var category = $("#" + idProduct).attr("category");
   category = category.toLowerCase();
-  var imageSrc = $("#" + idProduct).find("img").attr("src");
-  var price = parseFloat($("#" + idProduct).find(".productPrice span").text());
-  var quantite = parseInt($("#" + idProduct).find(".productQuantity p").text());
-  var description = $("#" + idProduct).find(".productDescription p").text();
+  console.log("cat: " + category);
+  var imageSrc = $("#" + idProduct)
+    .find("img")
+    .attr("src");
+  var price = parseFloat(
+    $("#" + idProduct)
+      .find(".productPrice span")
+      .text()
+  );
 
   // Put the info in the detail modal
 
@@ -184,10 +191,11 @@ $(".editProduct").click(function (event) {
   $(".product-content #product-title").val(title);
 
   // $(".product-content #edit-Category option[value='"+category+"']").attr('value',category + ' selected');
-  $(".product-content #product-description").val(description);
+
+  // Description is not yet ready
 
   $(".product-content #product-Price").val(price);
-  $(".product-content #product-Quantity").val(quantite);
+
   // model not yet ready
 
   // color code should be in the database
@@ -205,22 +213,28 @@ $(".detail").click(function (event) {
   console.log("Selected product id : " + idProduct);
   selectedIdForDetail = idProduct;
 
-  var title = $("#" + idProduct).find(".title").text();
+  var title = $("#" + idProduct)
+    .find(".title")
+    .text();
   var category = $("#" + idProduct).attr("category");
-  var imageSrc = $("#" + idProduct).find("img").attr("src");
-  var price = parseFloat($("#" + idProduct).find(".productPrice span").text());
-  var description = $("#" + idProduct).find(".productDescription p").text();
-  var quantite = parseInt($("#" + idProduct).find(".productQuantity p").text());
-  
+  var imageSrc = $("#" + idProduct)
+    .find("img")
+    .attr("src");
+  var price = parseFloat(
+    $("#" + idProduct)
+      .find(".productPrice span")
+      .text()
+  );
+
   // Put the info in the detail modal
 
   $(".modal .modal-body .large-image img").attr("src", imageSrc);
   $(".modal .modal-body .title-cat .title").text(title);
   $(".modal .modal-body .title-cat p").text(category);
-  $(".modal .modal-body .description p").text(description);
+
+  // Description is not yet ready
 
   $(".modal .modal-body .product-info .price strong").text(price);
-  $(".modal .modal-body .quantity-selector .quantity #quantityRest").val(quantite);
 
   // model not yet ready
 
@@ -247,11 +261,6 @@ $("#addProductImage").on("change", function () {
  })
  
  $('.delete').on('click',function(){
- var id = $(this).attr('id').substring(8);
+ var id = $(this).attr('id')[10];
   $('#productId').val(id);
  });
- $('.editProduct').on('click',function(){
- var id = $(this).attr('id').substring(8);
-  $('#productIdUpdate').val(id);
- }); 
- 
