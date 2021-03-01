@@ -1,0 +1,152 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    scroll-behavior: smooth;
+}
+
+.main, .row{
+    height: 100%;
+    width: 100%;
+}
+
+
+.rightside{
+    height: 100%;
+    background-color: #A7C9B5;
+}
+
+.main .leftside {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.leftside .title {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 2rem;
+    font-weight: 900;
+}
+
+.text{
+    width:500px
+}
+
+.logo img{
+    position:absolute;
+    top: 3em;
+    left: 5em;
+    width: 113px;
+    height: 59px;
+}
+
+.form-floating{
+    width: 80% !important;
+}
+
+.leftside .text {
+    margin-bottom: 2rem;
+    font-size: 18px;
+}
+.contactform {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.send {
+    text-align: center;
+    width: 200px;
+    border-radius: 10px;
+
+}
+
+.info{
+    position:absolute ;
+    width: 350px;
+    height: 450px;
+    background-color: #0F0F0F;
+    color: #F1F1F1;
+    top: 10em;
+    right: -11em;
+    border-radius: 5px;
+    
+
+}
+
+
+.infoB{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.decoraInfo{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: -25px;
+    background-color:#A7C9B5 ;
+    border-radius: 5px;
+}
+
+.info h2 {
+    text-align: center;
+    
+}
+
+.info ul {
+    margin-top:2.5em;
+    list-style: none;
+}
+
+.info li{
+    margin-top: 1em;
+
+}
+
+.info li i {
+    margin-right: 0.7em;
+}
+
+.socieldiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4em;
+}
+
+.sociel{
+    margin-left: 0.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    border: 3px solid white;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    
+}
+
+.sociel:hover{
+    color: white;
+}
